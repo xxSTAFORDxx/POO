@@ -1,12 +1,13 @@
+package ProblemesScanner;
 import java.util.Scanner;
 
-public class Caramels {
+public class CaramelsSobrants {
 	public static void main(String[] args) {
 		
 Scanner sc = new Scanner(System.in);
 double a = sc.nextInt();
 double b = sc.nextInt();
-double modul c = a / b;
+double c = a / b;
 System.out.println(c);
 	}
 }

@@ -1,3 +1,4 @@
+package ProblemesScanner;
 import java.util.Scanner;
 
 public class Quadrat {
