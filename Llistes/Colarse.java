@@ -14,11 +14,13 @@ public class Colarse {
 			int K = sc.nextInt();
 			for (int i = 0; i < K; i++) {
 				lista.add(sc.nextInt());
-				int C = sc.nextInt();
-				int P = sc.nextInt();
-				lista.add(C, P);
-				System.out.println(lista);
+			}
+			int C = sc.nextInt();
+			int P = sc.nextInt();
+			lista.add(P, C);
+			for (int i=0; i<lista.size(); i++) {
+			System.out.print(lista.get(i) +" ");
 			}
 		}
 	}
-}	
+}
