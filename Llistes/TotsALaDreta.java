@@ -15,8 +15,8 @@ public class TotsALaDreta {
 			lista.add(sc.nextInt());
 		}
 		Collections.rotate(lista, 1);
-		for (int num = lista; num < lista.size();) {
-			System.out.print(lista + " ");
+		for (int i = 0; i < lista.size(); i++) {
+			System.out.print(lista.get(i) + " ");
 		}
 	}
 }
