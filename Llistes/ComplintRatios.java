@@ -11,19 +11,16 @@ public class ComplintRatios {
 		int casos = sc.nextInt();
 		for (int j = 0; j < casos; j++) {
 			ArrayList<String> lista = new ArrayList<>();
-			int k = sc.nextInt();
+			int K = sc.nextInt();
 			sc.nextLine();
-			for (int i = 0; i < k; i++) {
+			for (int i = 0; i < K; i++) {
 				lista.add(sc.next());
 			}
-			int p = sc.nextInt();
-			lista.remove(p);
+			int P = sc.nextInt();
+			lista.remove(P);
 			for (int i = 0; i < lista.size(); i++) {
-
-				System.out.print(lista.get(i) +" ");
+				System.out.print(lista.get(i) + " ");
 			}
-
 		}
-
 	}
 }
