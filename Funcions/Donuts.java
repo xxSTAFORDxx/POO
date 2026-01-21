@@ -30,6 +30,7 @@ public class Donuts {
 			System.out.println("-----------");
 			System.out.println("Escull una opcio:");
 			int opcio = sc.nextInt();
+			System.out.println("                                 ");
 
 			switch (opcio) {
 			case 1:
