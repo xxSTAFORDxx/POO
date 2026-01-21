@@ -14,6 +14,7 @@ public class Donuts {
 		boolean sortir = false;
 		while (!sortir) {
 
+			System.out.println("                  ");
 			System.out.println("1. Registrar venda");
 			System.out.println("2. Veure donuts total");
 			System.out.println("3. Comptar vendes");
