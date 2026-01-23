@@ -1,12 +1,15 @@
 package Funcions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class GestorDeNotes {
 
 	static ArrayList<String> listaNom = new ArrayList<>();
 	static ArrayList<Double> listaNota = new ArrayList<>();
+	static ArrayList<Double> notesOrdenades = new ArrayList<>();
+	static ArrayList<String> alumnesOrdenats = new ArrayList<>();
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -30,7 +33,6 @@ public class GestorDeNotes {
 			System.out.println("-----------");
 			System.out.println("Escull una opcio:");
 			int opcio = sc.nextInt();
-			sc.nextLine();
 			System.out.println("                                 ");
 			switch (opcio) {
 			case 1:
@@ -60,8 +62,10 @@ public class GestorDeNotes {
 				break;
 			case 8:
 				alumnesOrdenats();
+				break;
 			case 9:
 				notesOrdenades();
+				break;
 			case 10:
 				eliminarAlumne();
 				break;
@@ -207,11 +211,15 @@ public class GestorDeNotes {
 		}
 	}
 	public static void alumnesOrdenats() {
-
+		alumnesOrdenats= listaNom;
+		Collections.sort(alumnesOrdenats);
+		System.out.println(alumnesOrdenats);
 	}
 
 	public static void notesOrdenades() {
-
+		notesOrdenades= listaNota;
+		Collections.sort(notesOrdenades);
+		System.out.println(notesOrdenades);
 	}
 	public static void eliminarAlumne() {
 		System.out.println("Introdueix el nom del alumne a esborrar.");
