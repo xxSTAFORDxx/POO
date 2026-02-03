@@ -27,13 +27,13 @@ public class Inventariado {
 			System.out.println("10. Añadir descuento.");
 			System.out.println("11. Mostrar informe cliente VIP.");
 			System.out.println("12. Cancelar pedido.");
-			System.out.println("13. Sortir del programa.");
+			System.out.println("13. Salir del programa.");
 			System.out.println("-----------");
 			System.out.println("-----------");
-			System.out.println("Escull una opcio:");
-			int opcio = sc.nextInt();
+			System.out.println("Elige una opcion:");
+			int opcion = sc.nextInt();
 			sc.nextLine();
-			switch (opcio) {
+			switch (opcion) {
 			case 1:
 				añadirProducto();
 				break;
@@ -101,14 +101,12 @@ public class Inventariado {
 				return;
 			} else {
 				p.codigo = comprobacionCodigo;
-				System.out.println("Error: Codigo no repetido");
 			}
 		}
 		System.out.println("Introduce el nombre del producto:");
 		p.nombre = sc.nextLine();
 		System.out.println("Introduce el precio del producto:");
 		double comprobacionPrecio = sc.nextDouble();
-		sc.nextLine();
 		if (comprobacionPrecio > 0) {
 			p.precio = comprobacionPrecio;
 		} else {
@@ -181,6 +179,7 @@ public class Inventariado {
 		System.out.println("Código del producto a comprar:");
 		int comprobacionCodigo = sc.nextInt();
 		sc.nextLine();
+		double precioTotal = 0;
 		boolean productoencontrado = false;
 		for (int i = 0; i < productos.size(); i++) {
 			if (productos.get(i).codigo == comprobacionCodigo) {
@@ -190,24 +189,48 @@ public class Inventariado {
 				int cantidad = sc.nextInt();
 				sc.nextLine();
 				if (cantidad > 0 && productos.get(i).stock >= cantidad) {
-					productos.get(i).stock-=cantidad;
+					productos.get(i).stock -= cantidad;
 				}
-				System.out.println("Total a pagar:");
+				precioTotal = cantidad * productos.get(i).precio;
+				System.out.println("Total a pagar:" + precioTotal + "€");
 				System.out.println("--------------------------");
 			}
 			if (!productoencontrado) {
-	            System.out.println("Error: El código de producto no existe.");
-		}
+				System.out.println("Error: El código de producto no existe.");
+			}
 
-	}}
+		}
+	}
 
 	public static void verPedidoCliente() {
-		System.out.println("Escribe el nombre del cliente para buscar sus pedidos:");
+		System.out.println("Escribe el DNI para buscar sus pedidos:");
+		String comprobacionDNI = sc.nextLine();
+		if (comprobacionDNI.length() != 9) {
+			System.out.println("Error: El DNI debe tener 9 caracteres.");
+			return;
+		}
+		System.out.println("--- LISTADO COMPLETO DE PEDIDOS DE " + comprobacionDNI + " ---");
+		boolean encontrado = false;
+		for (int i = 0; i < pedidos.size(); i++) {
+			if (pedidos.get(i).dni.equals(comprobacionDNI)) {
+				System.out.println(pedidos.get(i));
+				encontrado = true;
+			}
+		}
+		if (!encontrado) {
+			System.out.println("No se han encontrado pedidos para este cliente.");
+		}
 	}
 
 	public static void verPedidos() {
 		System.out.println("--- LISTADO COMPLETO DE PEDIDOS ---");
-		System.out.println(pedidos);
+		if (pedidos.isEmpty()) {
+			System.out.println("No hay ningún pedido registrado todavía.");
+		} else {
+			for (int i = 0; i < pedidos.size(); i++) {
+				System.out.println((i + 1) + ". " + pedidos.get(i));
+			}
+		}
 		System.out.println("-----------------------------------");
 	}
 
@@ -228,36 +251,111 @@ public class Inventariado {
 	}
 
 	public static void mostrarTotalVentas() {
-		System.out.println("Calculando el total de ingresos por ventas...");
-		System.out.print("El total vendido es: ");
+		System.out.println("--- BALANCE DE INGRESOS ---");
+		double totalVentas = 0;
+		if (pedidos.isEmpty()) {
+			System.out.println("Todavía no se han realizado ventas.");
+		} else {
+			for (int i = 0; i < pedidos.size(); i++) {
+				totalVentas += pedidos.get(i).importe;
+			}
+			System.out.println("El total vendido acumulado es: " + totalVentas + "€");
+		}
+		System.out.println("---------------------------");
 	}
 
 	public static void productoMasVendido() {
-		System.out.println("El producto más vendido hasta ahora es:");
+		int uMasVendida = 0;
+		String pMasVendido = "";
+
+		if (pedidos.isEmpty()) {
+			System.out.println("No hay ventas registradas todavía.");
+			return;
+		}
+
+		for (int i = 0; i < productos.size(); i++) {
+			int sumaVentas = 0;
+			int codigo = productos.get(i).codigo;
+
+			for (int j = 0; j < pedidos.size(); j++) {
+				if (pedidos.get(j).codigoProducto == codigo) {
+					sumaVentas += pedidos.get(j).cantidad;
+				}
+			}
+
+			if (sumaVentas > uMasVendida) {
+				uMasVendida = sumaVentas;
+				pMasVendido = productos.get(i).nombre;
+			}
+		}
+		if (uMasVendida > 0) {
+			System.out.println("El producto más vendido es: " + pMasVendido);
+			System.out.println("Total unidades vendidas: " + uMasVendida);
+		} else {
+			System.out.println("No se han vendido unidades todavía.");
+		}
 	}
 
 	public static void añadirDescuento() {
 		System.out.println("--- APLICAR DESCUENTO A PRODUCTO ---");
-		System.out.print("Introduce el código del producto: ");
-		// Aquí pedirías el código
-		System.out.print("Introduce el porcentaje de descuento (ej: 10 para 10%): ");
-		// Aquí pedirías el descuento
-		System.out.println("Calculando nuevo precio...");
-		System.out.println("------------------------------------");
+		int codigo = sc.nextInt();
+		sc.nextLine();
+		boolean descuento = false;
+		for (int i = 0; i < pedidos.size(); i++) {
+			if (pedidos.get(i).cantidad > 5 && pedidos.get(i).codigoProducto == codigo) {
+				double importeActual = pedidos.get(i).importe;
+				double totalDescuento = importeActual * 0.95;
+				pedidos.get(i).importe = totalDescuento;
+
+				System.out.println("Pedido de cliente " + pedidos.get(i).dni + " actualizado. Nuevo total: "
+						+ totalDescuento + "€");
+				descuento = true;
+			}
+		}
+		if (!descuento) {
+			System.out.println("No se han encontrado pedidos que superen las 5 unidades.");
+		} else {
+			System.out.println("¡Proceso de descuentos completado!");
+			System.out.println("------------------------------------");
+		}
 	}
 
 	public static void informeCliente() {
 		System.out.println("--- GENERANDO INFORME DE CLIENTES VIP ---");
-		System.out.println("Criterio: Clientes con compras superiores a 500€");
-		System.out.println("-------------------------------------------------");
-		System.out.println("CLIENTE\t\tTOTAL GASTADO\tPEDIDOS REALIZADOS");
-		// Aquí iría el bucle para mostrar los datos
+		System.out.println("Criterio: Clientes con compras superiores a 1000€");
+		ArrayList<String> dnisComprobados = new ArrayList<>();
+		boolean hayVips = false;
+		for (int i = 0; i < pedidos.size(); i++) {
+			String dni = pedidos.get(i).dni;
+			if (!dnisComprobados.contains(dni)) {
+				double gastoTotal = 0;
+				for (int j = 0; j < pedidos.size(); j++) {
+					if (pedidos.get(j).dni.equals(dni)) {
+						gastoTotal += pedidos.get(j).importe;
+					}
+				}
+				if (gastoTotal > 1000) {
+					System.out.println("Cliente DNI: " + dni + " | Gasto Total: " + gastoTotal + "€");
+					hayVips = true;
+				}
+
+			}
+			dnisComprobados.add(dni);
+		}
+		if (!hayVips)
+
+		{
+			System.out.println("No hay clientes que superen los 1000€ de gasto.");
+		}
+		System.out.println("-------------------------------------------");
 	}
 
 	public static void cancelarPedido() {
 		System.out.println("--- CANCELACIÓN DE PEDIDO ---");
-		System.out.print("Introduce el ID o número del pedido que deseas cancelar: ");
-		System.out.println("-----------------------------");
+		System.out.print("Introduce el DNI del cliente que quiere cancelar un pedido: ");
+		String dni = sc.nextLine();
+	    boolean encontrado = false;
+	    for (int i=0;)
 		// Aquí pedirías el identificador del pedido
 
 		System.out.println("Buscando pedido...");
