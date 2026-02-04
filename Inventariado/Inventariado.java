@@ -26,8 +26,7 @@ public class Inventariado {
 			System.out.println("9. Mostrar el producto mas vendido.");
 			System.out.println("10. Añadir descuento.");
 			System.out.println("11. Mostrar informe cliente VIP.");
-			System.out.println("12. Cancelar pedido.");
-			System.out.println("13. Salir del programa.");
+			System.out.println("12. Salir del programa.");
 			System.out.println("-----------");
 			System.out.println("-----------");
 			System.out.println("Elige una opcion:");
@@ -68,9 +67,6 @@ public class Inventariado {
 				informeCliente();
 				break;
 			case 12:
-				cancelarPedido();
-				break;
-			case 13:
 				sortir = true;
 				break;
 			}
@@ -348,19 +344,6 @@ public class Inventariado {
 			System.out.println("No hay clientes que superen los 1000€ de gasto.");
 		}
 		System.out.println("-------------------------------------------");
-	}
-
-	public static void cancelarPedido() {
-		System.out.println("--- CANCELACIÓN DE PEDIDO ---");
-		System.out.print("Introduce el DNI del cliente que quiere cancelar un pedido: ");
-		String dni = sc.nextLine();
-	    boolean encontrado = false;
-	    for (int i=0;)
-		// Aquí pedirías el identificador del pedido
-
-		System.out.println("Buscando pedido...");
-		// Si se encuentra, podrías poner:
-		System.out.println("¿Estás seguro de que deseas eliminar este pedido? (S/N):");
 	}
 
 }
