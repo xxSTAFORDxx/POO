@@ -19,16 +19,28 @@ public class Paciente {
 		}
 		this.edad = edad;
 		if (this.edad <= 1) {
-			this.planta = "NEONATAL";
+			this.planta=Planta.NEONATAL;
 		} else if (this.edad <= 18) {
-			this.planta = "PEDIATRIA";
+			this.planta=Planta.PEDIATRIA;
 		} else if (this.edad <= 74) {
-			this.planta = "GENERAL";
+			this.planta=Planta.GENERAL;
 		} else {
-			this.planta = "GERIATRIA";
+			this.planta= Planta.GERIATRIA;
 		}
 	}
 
+	public Paciente(String nombre, int edad) {
+	    this(nombre, 0.0, edad, Gravedad.LEVE);
+	    
+	    
+	}
+	
+	public Paciente(String nombre, double sueldo, int edad) {
+	    this(nombre, sueldo, edad, Gravedad.LEVE);
+	    
+	    
+	}
+	
 	public void diElNombre() {
 
 		System.out.println(this.nombre);
