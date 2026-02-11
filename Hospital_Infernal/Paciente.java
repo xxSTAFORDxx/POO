@@ -12,7 +12,7 @@ public class Paciente {
 		this.nombre = nombre;
 		this.sueldo = sueldo;
 		this.gravedad = gravedad;
-		if (edad < 0) {
+		if (edad <= 0) {
 			edad = 0;
 		} else if (edad >= 150) {
 			edad = 150;

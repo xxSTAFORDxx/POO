@@ -4,7 +4,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		/*
+
 		Medico marc = new Medico();
 		marc.nombre = "Marc";
 		marc.diElNombre();
@@ -37,7 +37,7 @@ public class Test {
 	        System.out.println(marc.nombre+" "+marc.sueldo);
 	        if(marc.categoria == Categoria.ESPECIALISTA) {
 	            System.out.println("Marc es un Especialista!");
-	        } */
+	        }
 
 Medico faustino = new Medico("Dr. Faustino", "General", 1000.0, 0);
         
