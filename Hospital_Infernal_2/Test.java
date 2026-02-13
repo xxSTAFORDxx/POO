@@ -1,6 +1,6 @@
 package Hospital_Infernal_2;
 
-import Hospital_Infernal.Medico;
+import Hospital_Infernal_2.Medico;
 
 public class Test {
 
@@ -8,8 +8,13 @@ public class Test {
 		// TODO Auto-generated method stub
 		
 
-		Medico marc = new Medico();
-		marc.nombre = "Marc";
+		Medico marc = new Medico("Marc");
+		Paciente yago = new Paciente("Yago");
+		yago.hospitalizar(null);
+		System.out.println(yago instanceof Medico);
+		System.out.println(yago instanceof Persona);
+		System.out.println(yago instanceof Paciente);
+
 		marc.diElNombre();
 
 		Paciente_Hospitalizado dani = new Paciente_Hospitalizado("Dani", 35);

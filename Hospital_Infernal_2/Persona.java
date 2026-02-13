@@ -1,11 +1,9 @@
-package Hospital_Infernal_2;
-
-import Hospital_Infernal.Gravedad;
+	package Hospital_Infernal_2;
 
 public class Persona {
 	// atributos de la persona
-	public String nombre;
-	public int edad;
+	String nombre;
+	int edad;
 
 	public void diElNombre() {
 
@@ -14,5 +12,10 @@ public class Persona {
 
 	public Persona(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public Persona(String nombre, int edad) {
+	    this.nombre = nombre;
+	    this.edad = edad;
 	}
 }
