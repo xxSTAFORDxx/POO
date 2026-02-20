@@ -1,4 +1,4 @@
-package Hospital_Infernal_2;
+package Hospital_Infernal_3;
 
 public enum Gravedad {
     LEVE(1), MODERADA(2), GRAVE(3), CRITICA(4);

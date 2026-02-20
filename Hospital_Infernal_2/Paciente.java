@@ -21,16 +21,40 @@ public class Paciente extends Persona {
 	}
 	public void añadirSintoma(Sintoma s) {
 		this.sintomas.add(s);
-		if(s.gravedad.ordinal() > this.gravedad.ordinal())
-			this.gravedad= s.gravedad;
+		if (s.gravedad.getNivel() > this.gravedad.getNivel()) {
+	        this.gravedad = s.gravedad;
+	        System.out.println("Atención: La gravedad de " + this.nombre + " ha subido a " + this.gravedad);
+	    	
+	        //if(s.gravedad.ordinal() > this.gravedad.ordinal())
+			//	this.gravedad= s.gravedad;
+	        //---------------------------------------------------------------------------------
+	        //if (s.gravedad == Gravedad.CRITICA) {
+	        //     Si el síntoma es crítico, el paciente pasa a crítico siempre
+	        //    this.gravedad = Gravedad.CRITICA;
+	       // } 
+	       // else if (s.gravedad == Gravedad.GRAVE) {
+	       //         Solo subimos a GRAVE si el paciente estaba en algo inferior
+	        //    if (this.gravedad == Gravedad.MODERADA || this.gravedad == Gravedad.LEVE) {
+	        //        this.gravedad = Gravedad.GRAVE;
+	        //    }
+	       // } 
+	      //  else if (s.gravedad == Gravedad.MODERADA) {
+	     //        Solo subimos a MODERADA si el paciente estaba LEVE
+	       //     if (this.gravedad == Gravedad.LEVE) {
+	        //        this.gravedad = Gravedad.MODERADA;
+	       //     }
+	      //  }
+	        
+		}
 	}
-		
-public Paciente_Hospitalizado hospitalizar(String tratramiento) {
+			
+public Paciente_Hospitalizado hospitalizar(String tratamiento) {
         
         //si nosaltres mateixos no som de classe PacientHospitalitzat
         if(!(this instanceof Paciente_Hospitalizado)) {
-            //hospitalitzar el Pacient. Això ho heu de fer vosaltres
-            //Has de crear un PacientHospitalitzat fent servir el propi Pacient. potser algun dels constructors de PacientHospitalitzatet serveix…
+        	Paciente_Hospitalizado nuevoPaciente = new Paciente_Hospitalizado(this, tratamiento);
+            System.out.println(this.nombre + " ha sido hospitalizado.");
+            return nuevoPaciente;
         }else{
             //El pacient ja està hospitalitzat
             System.out.println("Aquest pacient ja està hospitalitzat");

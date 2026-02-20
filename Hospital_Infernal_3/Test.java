@@ -1,6 +1,5 @@
-package Hospital_Infernal_2;
+package Hospital_Infernal_3;
 
-import Hospital_Infernal_2.Medico;
 
 public class Test {
 
