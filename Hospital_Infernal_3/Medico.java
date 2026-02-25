@@ -49,6 +49,19 @@ public class Medico extends Persona {
 		}
 	}
 
+	private void augmentarAñosTrabajados() {
+		this.añosTrabajados++;
+		actualizarSueldo();
+	}
+
+	private void actualizarSueldo() {
+		this.añosTrabajados++;
+		this.sueldo *= 1.02;
+		if (this.añosTrabajados % 6 == 0) {
+			this.sueldo *= 1.05;
+		}
+	}
+
 	public int getAñosTrabajados() {
 		return añosTrabajados;
 	}
@@ -65,15 +78,23 @@ public class Medico extends Persona {
 		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
+	public void setDepartamento(String nuevoDepartamento) {
+		System.out.println("Medico " + getNombre() + ": Canvio de departamento de " + this.departamento + " a "
+				+ nuevoDepartamento);
+		this.departamento = nuevoDepartamento;
 	}
 
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoria(Categoria nuevaCategoria) {
+		if (nuevaCategoria == Categoria.INTERNO && (getCategoria() != Categoria.INTERNO || getAñosTrabajados() > 2)) {
+			System.out.println("❌ ERROR: El metge " + getNombre()
+					+ " no puede bajar de categoria o ya tiene mucha experiència per ser Interno.");
+		} else {
+			System.out.println("la categoria de " + getNombre() + " ahora es " + nuevaCategoria);
+			this.categoria = nuevaCategoria;
+		}
 	}
 }

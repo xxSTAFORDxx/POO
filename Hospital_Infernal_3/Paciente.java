@@ -6,7 +6,7 @@ import Hospital_Infernal_3.Gravedad;
 import Hospital_Infernal_3.Planta;
 
 public class Paciente extends Persona {
-	
+
 	private double dinero;
 	private int edad;
 	private ArrayList<Sintoma> sintomas;
@@ -42,19 +42,19 @@ public class Paciente extends Persona {
 			return (Paciente_Hospitalizado) this;
 		}
 	}
-	
+
 	public Paciente(String nombre, double sueldo, int edad, Gravedad gravedad) {
 		super(nombre, edad);
 		this.gravedad = gravedad;
-		
+
 		if (this.getEdad() <= 1) {
-			this.planta=Planta.NEONATAL;
+			this.planta = Planta.NEONATAL;
 		} else if (this.getEdad() <= 18) {
-			this.planta=Planta.PEDIATRIA;
+			this.planta = Planta.PEDIATRIA;
 		} else if (this.getEdad() <= 74) {
-			this.planta=Planta.GENERAL;
+			this.planta = Planta.GENERAL;
 		} else {
-			this.planta= Planta.GERIATRIA;
+			this.planta = Planta.GERIATRIA;
 		}
 	}
 
@@ -62,24 +62,41 @@ public class Paciente extends Persona {
 		return dinero;
 	}
 
-	public void setDinero(double dinero) {
-		this.dinero = dinero;
+	public void setDinero(double nuevoDinero) {
+		System.out.println("El saldo de " + getNombre() + " ha passat de " + this.dinero + "€ a " + nuevoDinero + "€");
+		this.dinero = nuevoDinero;
 	}
 
 	public int getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
-		this.edad = edad;
+	public void setEdad(int nuevaEdad) {
+		if (edad < 0) {
+			edad = 0;
+		} else if (edad > 150) {
+			edad = 150;
+		}
+		System.out.println(getNombre() + " ara té " + nuevaEdad + " anys.");
+		this.edad = nuevaEdad;
+		if (this.edad <= 1) {
+			this.planta = Planta.NEONATAL;
+		} else if (this.edad <= 18) {
+			this.planta = Planta.PEDIATRIA;
+		} else if (this.edad <= 74) {
+			this.planta = Planta.GENERAL;
+		} else {
+			this.planta = Planta.GERIATRIA;
+		}
 	}
 
 	public Gravedad getGravedad() {
 		return gravedad;
 	}
 
-	public void setGravedad(Gravedad gravedad) {
-		this.gravedad = gravedad;
+	public void setGravedad(Gravedad nuevaGravedad) {
+		System.out.println("El'estado de " + getNombre() + " ha canviado a " + nuevaGravedad);
+		this.gravedad = nuevaGravedad;
 	}
 
 	public ArrayList<Sintoma> getSintomas() {

@@ -27,16 +27,23 @@ public class Paciente_Hospitalizado extends Paciente {
 		return tratamientoActual;
 	}
 
-	public void setTratamientoActual(String tratamientoActual) {
-		this.tratamientoActual = tratamientoActual;
+	public void setTratamientoActual(String nuevoTratamiento) {
+		this.tratamientoActual = nuevoTratamiento;
 	}
 
 	public int getDiasHospitalizado() {
 		return diasHospitalizado;
 	}
 
-	public void setDiasHospitalizado(int diasHospitalizado) {
-		this.diasHospitalizado = diasHospitalizado;
-	}
+	public void setDiasHospitalizado(int nuevoDiasHospitalizado) {
+		if (nuevoDiasHospitalizado < getDiasHospitalizado()) {
+			System.out.println("Error, el paciente " + getNombre() + " ya lleva " + getDiasHospitalizado() + " dias");
+		} else if (nuevoDiasHospitalizado == getDiasHospitalizado()) {
+			System.out.println("Lleva " + getDiasHospitalizado());
+		} else {
+			System.out.println("Lleva " + getDiasHospitalizado());
+			this.diasHospitalizado = nuevoDiasHospitalizado;
+		}
 
+	}
 }
