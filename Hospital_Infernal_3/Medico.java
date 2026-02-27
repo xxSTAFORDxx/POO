@@ -10,35 +10,70 @@ public class Medico extends Persona {
 	private String departamento;
 	private ArrayList<Paciente> pacientsAssignats;
 
-	public Medico(String nombre) {
-		super(nombre);
+	public Medico() {
+		super("Sin definir");
 		this.añosTrabajados = 0;
 		this.sueldo = 1000.0;
+		this.departamento = "Sin departamento";
 		this.categoria = Categoria.INTERNO;
 		this.pacientsAssignats = new ArrayList<>();
 	}
 
-	public boolean consulta(Paciente pac) {
-		int multiplicador = 0;
+	public Medico(String nombre) {
+		super(nombre);
+		this.añosTrabajados = 0;
+		this.sueldo = 1000.0;
+		this.departamento = "Sin departamento";
+		this.categoria = Categoria.INTERNO;
+		this.pacientsAssignats = new ArrayList<>();
+	}
 
-		switch (this.categoria) {
-		case INTERNO:
-			multiplicador = 1;
-			break;
-		case RESIDENTE:
-			multiplicador = 2;
-			break;
-		case ESPECIALISTA:
-			multiplicador = 3;
-			break;
+	public void augmentarAñosTrabajados() {
+		this.añosTrabajados++;
+		actualizarSueldo();
+	}
+
+	private void actualizarSueldo() {
+		this.sueldo *= 1.02;
+		if (this.añosTrabajados % 6 == 0) {
+			this.sueldo *= 1.05;
 		}
-		double precioConsulta = 10.0 * multiplicador;
-		if (pac.getEdad() < 15 || pac.getGravedad() == Gravedad.CRITICA) {
-			precioConsulta = 0;
+	}
+
+	public Medico(String nombre, Categoria cat) {
+		this(nombre);
+		this.categoria = cat;
+	}
+
+	public Medico(String nombre, int añosTrabajados) {
+		this(nombre);
+		for (int i = 0; i < añosTrabajados; i++) {
+			this.augmentarAñosTrabajados();
 		}
+	}
+
+	public Medico(String nombre, String departamento, double sueldoInicial, int añosTrabajados) {
+		super(nombre);
+		this.departamento = departamento;
+		this.sueldo = sueldoInicial;
+		for (int i = 0; i < añosTrabajados; i++) {
+			this.augmentarAñosTrabajados();
+		}
+	}
+
+	public void diElNombre() {
+		System.out.println("Médico: " + this.getNombre() + " | Dept: " + this.departamento);
+	}
+
+	public void afegirPacient(Paciente pac) {
+		this.pacientsAssignats.add(pac);
+		System.out.println("Paciente " + pac.getNombre() + " asignado al Dr. " + this.getNombre());
+	}
+
+	public boolean consulta(Paciente pac) {
+		double precioConsulta = calcularPrecioConsulta(pac.getEdad(), pac.getGravedad(), this.categoria);
 		if (pac.getDinero() >= precioConsulta) {
 			pac.setDinero(pac.getDinero() - precioConsulta);
-			this.sueldo += precioConsulta;
 			this.pacientsAssignats.add(pac);
 			System.out.println("Consulta realizada a " + pac.getNombre() + ". Precio: " + precioConsulta + "€");
 			return true;
@@ -49,17 +84,26 @@ public class Medico extends Persona {
 		}
 	}
 
-	private void augmentarAñosTrabajados() {
-		this.añosTrabajados++;
-		actualizarSueldo();
-	}
+	static double calcularPrecioConsulta(int edad, Gravedad gravedad, Categoria categoria) {
+		int multiplicador = 0;
 
-	private void actualizarSueldo() {
-		this.añosTrabajados++;
-		this.sueldo *= 1.02;
-		if (this.añosTrabajados % 6 == 0) {
-			this.sueldo *= 1.05;
+		double precioConsulta = 10.0 * multiplicador;
+		if (edad < 15 || gravedad == Gravedad.CRITICA) {
+			precioConsulta = 0;
 		}
+
+		switch (categoria) {
+		case INTERNO:
+			multiplicador = 1;
+			break;
+		case RESIDENTE:
+			multiplicador = 2;
+			break;
+		case ESPECIALISTA:
+			multiplicador = 3;
+			break;
+		}
+		return precioConsulta;
 	}
 
 	public int getAñosTrabajados() {
@@ -96,5 +140,10 @@ public class Medico extends Persona {
 			System.out.println("la categoria de " + getNombre() + " ahora es " + nuevaCategoria);
 			this.categoria = nuevaCategoria;
 		}
+	}
+
+	public String toString() {
+		return super.toString() + "Medico [añosTrabajados=" + añosTrabajados + ", sueldo=" + sueldo + ", categoria="
+				+ categoria + ", departamento=" + departamento + ", pacientsAssignats=" + pacientsAssignats + "]";
 	}
 }

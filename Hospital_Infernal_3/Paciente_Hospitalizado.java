@@ -4,6 +4,14 @@ public class Paciente_Hospitalizado extends Paciente {
 
 	private String tratamientoActual;
 	private int diasHospitalizado;
+	static int nombrePacientesHospitalizados = 0;
+
+	public Paciente_Hospitalizado(Paciente pac) {
+		super(pac.getNombre(), pac.getDinero(), pac.getEdad(), pac.getGravedad());
+		this.tratamientoActual = "Observacion";
+		this.diasHospitalizado = 0;
+		nombrePacientesHospitalizados++;
+	}
 
 	public Paciente_Hospitalizado(String nombre, int edad) {
 		super(nombre, edad);
@@ -45,5 +53,10 @@ public class Paciente_Hospitalizado extends Paciente {
 			this.diasHospitalizado = nuevoDiasHospitalizado;
 		}
 
+	}
+
+	public String toString() {
+		return super.toString() + "Paciente_Hospitalizado [tratamientoActual=" + tratamientoActual
+				+ ", diasHospitalizado=" + diasHospitalizado + "]";
 	}
 }

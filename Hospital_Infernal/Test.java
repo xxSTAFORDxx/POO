@@ -46,9 +46,9 @@ Medico faustino = new Medico("Dr. Faustino", "General", 1000.0, 0);
         Medico house = new Medico("Dr. House", Categoria.ESPECIALISTA);
         Paciente p = new Paciente("Juan", 100.0, 20, Gravedad.LEVE);
         
-        System.out.println("Dinero Juan antes: " + p.sueldo);
+        System.out.println("Dinero Juan antes: " + p.dinero);
         house.consulta(p);
-        System.out.println("Dinero Juan después: " + p.sueldo);
+        System.out.println("Dinero Juan después: " + p.dinero);
         System.out.println("Sueldo House después de cobrar: " + house.sueldo);
    
 	}

@@ -10,16 +10,66 @@ public class Medico extends Persona {
 
 	int añosTrabajados;
 	double sueldo;
+	String departamento;
 	Categoria categoria;
 	ArrayList<Paciente> pacientsAssignats;
 
+	public Medico() {
+		super("Sin definir");
+		this.añosTrabajados = 0;
+		this.sueldo = 1000.0;
+		this.departamento = "Sin departamento";
+		this.categoria = Categoria.INTERNO;
+		this.pacientsAssignats = new ArrayList<>();
+	}
+	
 	public Medico(String nombre) {
 		super(nombre);
 		this.añosTrabajados = 0;
 		this.sueldo = 1000.0;
+		this.departamento = "Sin departamento";
 		this.categoria = Categoria.INTERNO;
 		this.pacientsAssignats = new ArrayList<>();
 	}
+
+	public void augmentarAñosTrabajados() {
+		this.añosTrabajados++;
+		this.sueldo *= 1.02;
+		if (this.añosTrabajados % 6 == 0) {
+			this.sueldo *= 1.05;
+		}
+	}
+
+	public Medico(String nombre, Categoria cat) {
+		this(nombre);
+		this.categoria = cat;
+	}
+	
+	public Medico(String nombre, int añosTrabajados) {
+		this(nombre);
+		for (int i = 0; i < añosTrabajados; i++) {
+			this.augmentarAñosTrabajados();
+		}
+	}
+
+	public Medico(String nombre, String departamento, double sueldoInicial, int añosTrabajados) {
+		this(nombre);
+		this.departamento = departamento;
+		this.sueldo = sueldoInicial;
+		for (int i = 0; i < añosTrabajados; i++) {
+			this.augmentarAñosTrabajados();
+		}
+	}
+	
+	public void diElNombre() {
+		System.out.println("Médico: " + this.nombre + " | Dept: " + this.departamento);
+	}
+
+	public void afegirPacient(Paciente pac) {
+		this.pacientsAssignats.add(pac);
+		System.out.println("Paciente " + pac.nombre + " asignado al Dr. " + this.nombre);
+	}
+
 	public boolean consulta(Paciente pac) {
 		int multiplicador = 0;
 
@@ -40,7 +90,7 @@ public class Medico extends Persona {
 		}
 		if (pac.dinero >= precioConsulta) {
 			pac.dinero -= precioConsulta;
-			this.sueldo += precioConsulta;
+			pac.dinero += precioConsulta;
 			this.pacientsAssignats.add(pac);
 			System.out.println("Consulta realizada a " + pac.nombre + ". Precio: " + precioConsulta + "€");
 			return true;

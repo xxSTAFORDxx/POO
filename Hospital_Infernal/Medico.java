@@ -85,9 +85,9 @@ public class Medico {
 		if (pac.edad < 15 || pac.gravedad == Gravedad.CRITICA) {
 			precioConsulta = 0;
 		}
-		if (pac.sueldo >= precioConsulta) {
-			pac.sueldo -= precioConsulta;
-			this.sueldo += precioConsulta;
+		if (pac.dinero >= precioConsulta) {
+			pac.dinero -= precioConsulta;
+			pac.dinero += precioConsulta;
 			this.pacientsAssignats.add(pac);
 			System.out.println("Consulta realizada a " + pac.nombre + ". Precio: " + precioConsulta + "€");
 			return true;
