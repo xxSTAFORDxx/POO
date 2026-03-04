@@ -1,4 +1,4 @@
-package Hospital_Infernal_3;
+package Hospital_Infernal_4;
 
 import java.util.ArrayList;
 
