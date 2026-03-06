@@ -7,24 +7,27 @@ public class Paciente_Hospitalizado extends Paciente {
 	private ArrayList<Tratamiento> tratamientosActuales = new ArrayList<>();
 	private int diasHospitalizado;
 	static int nombrePacientesHospitalizados = 0;
+	private Diagnostico diagnostico;
+	private Intervencion intervencionAsignada;
 
 	public Paciente_Hospitalizado(Paciente pac) {
 		super(pac.getNombre(), pac.getDinero(), pac.getEdad(), pac.getGravedad());
-		this.tratamientosActuales.add(new Tratamiento("Observacion"));
+		this.tratamientosActuales.add(new Medicamento("Paracetamol", Tipo_Medicamento.ANALGESICO));
 		this.diasHospitalizado = 0;
 		nombrePacientesHospitalizados++;
 	}
 
 	public Paciente_Hospitalizado(String nombre, int edad) {
 		super(nombre, edad);
-		this.tratamientosActuales.add(new Tratamiento("Observacion"));
+		this.tratamientosActuales.add(new Medicamento("Paracetamol", Tipo_Medicamento.ANALGESICO));
 		this.diasHospitalizado = 0;
 	}
 
-	public Paciente_Hospitalizado(Paciente pac, String tratamiento) {
+	public Paciente_Hospitalizado(Paciente pac, Tratamiento tratamiento) {
 		super(pac.getNombre(), pac.getDinero(), pac.getEdad(), pac.getGravedad());
-		this.tratamientosActuales.add(new Tratamiento(tratamiento));
+		this.tratamientosActuales.add(tratamiento);
 		this.diasHospitalizado = 0;
+		nombrePacientesHospitalizados++;
 	}
 
 	public void añadirSintoma(Sintoma s) {
@@ -32,12 +35,42 @@ public class Paciente_Hospitalizado extends Paciente {
 		this.diasHospitalizado = 1;
 	}
 
-	public  getTratamientoActual() {
-		return arrayList Tratamiento;
+	public ArrayList<Tratamiento> getTratamientosActuales() {
+		return tratamientosActuales;
 	}
 
-	public void setTratamientoActual(String nuevoTratamiento) {
-		this.tratamientosActuales = nuevoTratamiento;
+	public void reduirGravetat() {
+		if (getGravedad().equals(Gravedad.LEVE)) {
+			setGravedad(Gravedad.LEVE);
+		}
+		if (getGravedad().equals(Gravedad.MODERADA)) {
+			setGravedad(Gravedad.LEVE);
+		}
+		if (getGravedad().equals(Gravedad.GRAVE)) {
+			setGravedad(Gravedad.MODERADA);
+		}
+		if (getGravedad().equals(Gravedad.CRITICA)) {
+			setGravedad(Gravedad.GRAVE);
+		}
+	}
+
+	public void augmentarGravetat() {
+		if (getGravedad().equals(Gravedad.CRITICA)) {
+			setGravedad(Gravedad.CRITICA);
+		}
+		if (getGravedad().equals(Gravedad.GRAVE)) {
+			setGravedad(Gravedad.CRITICA);
+		}
+		if (getGravedad().equals(Gravedad.MODERADA)) {
+			setGravedad(Gravedad.GRAVE);
+		}
+		if (getGravedad().equals(Gravedad.LEVE)) {
+			setGravedad(Gravedad.MODERADA);
+		}
+	}
+
+	public void setTratamientoActual(Tratamiento nuevoTratamiento) {
+		this.tratamientosActuales.add(new Tratamiento(nuevoTratamiento));
 	}
 
 	public int getDiasHospitalizado() {
@@ -54,6 +87,18 @@ public class Paciente_Hospitalizado extends Paciente {
 			this.diasHospitalizado = nuevoDiasHospitalizado;
 		}
 
+	}
+
+	public Diagnostico getDiagnostico() {
+		return diagnostico;
+	}
+
+	public Intervencion getIntervencionAsignada() {
+		return intervencionAsignada;
+	}
+
+	public void setIntervencionAsignada(Intervencion intervencionAsignada) {
+		this.intervencionAsignada = intervencionAsignada;
 	}
 
 	public String toString() {

@@ -42,7 +42,6 @@ public class Paciente extends Persona {
 	public Paciente(String nombre, int edad) {
 		super(nombre);
 		this.edad = edad;
-		this.sintomas.add(new Sintoma);
 		this.gravedad = Gravedad.LEVE;
 	}
 
@@ -63,7 +62,7 @@ public class Paciente extends Persona {
 		}
 	}
 
-	public Paciente_Hospitalizado hospitalizar(String tratamiento) {
+	public Paciente_Hospitalizado hospitalizar(Tratamiento tratamiento) {
 
 		if (!(this instanceof Paciente_Hospitalizado)) {
 			Paciente_Hospitalizado nuevoPaciente = new Paciente_Hospitalizado(this, tratamiento);

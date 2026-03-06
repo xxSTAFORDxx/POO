@@ -41,7 +41,7 @@ public class TestV2 {
 	    
 	    // Dani se agrava y lo hospitalizamos. 
 	    // Importante: 'daniIngresado' es un nuevo objeto de tipo Paciente_Hospitalizado
-	    Paciente_Hospitalizado daniIngresado = dani.hospitalizar("Repòs i observació");
+	    Paciente_Hospitalizado daniIngresado = dani.hospitalizar(new Tratamiento("Repòs i observació"));
 
 	    // Probamos los métodos específicos de la subclase
 	    daniIngresado.setDiasHospitalizado(1);
