@@ -3,6 +3,7 @@ package Hospital_Infernal_4;
 import java.util.Random;
 
 public class Cirugia extends Tratamiento implements Intervencion {
+
 	private boolean exitosa;
 
 	public Cirugia(String nombre) {
@@ -12,8 +13,17 @@ public class Cirugia extends Tratamiento implements Intervencion {
 	}
 
 	@Override
-	public void administrar(Paciente_Hospitalizado pac) {
-		// TODO Auto-generated method stub
+	public void asignar(Paciente_Hospitalizado pac) {
 
+	}
+
+	@Override
+	public void realizar(Paciente_Hospitalizado pac) {
+
+	}
+
+	@Override
+	public void administrar(Paciente_Hospitalizado pac) {
+		this.asignar(pac);
 	}
 }

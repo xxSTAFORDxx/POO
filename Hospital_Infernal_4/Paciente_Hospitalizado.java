@@ -69,8 +69,14 @@ public class Paciente_Hospitalizado extends Paciente {
 		}
 	}
 
+	public void administrarTratamiento(Tratamiento tra) {
+		if (tratamientosActuales.contains(tra)) {
+			tra.administrar(this);
+		}
+	}
+
 	public void setTratamientoActual(Tratamiento nuevoTratamiento) {
-		this.tratamientosActuales.add(new Tratamiento(nuevoTratamiento));
+		this.tratamientosActuales.add(nuevoTratamiento);
 	}
 
 	public int getDiasHospitalizado() {
@@ -93,6 +99,10 @@ public class Paciente_Hospitalizado extends Paciente {
 		return diagnostico;
 	}
 
+	public void setDiagnostico(Diagnostico diagnostico) {
+	    this.diagnostico = diagnostico;
+	}
+	
 	public Intervencion getIntervencionAsignada() {
 		return intervencionAsignada;
 	}

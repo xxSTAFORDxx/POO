@@ -1,6 +1,6 @@
 package Hospital_Infernal_3;
 
-public class TestV2 {
+public class TestV3 {
 
 	public static void main(String[] args) {
 

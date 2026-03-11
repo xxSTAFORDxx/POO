@@ -48,7 +48,7 @@ public class Test {
 
 		Paciente p1 = new Paciente("Yago", 29);
 
-		Paciente_Hospitalizado yagoEnPlanta = p1.hospitalizar(new Tratamiento("Reposo total"));
+		Paciente_Hospitalizado yagoEnPlanta = p1.hospitalizar(new Terapia("Reposo total", Tipo_Terapia.FISIO));
 
 		Paciente dani = new Paciente();
 		dani.estatic = "hola";

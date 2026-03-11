@@ -3,7 +3,7 @@ package Hospital_Infernal_4;
 public abstract class Tratamiento {
 
 	private String nombre;
-	private int cantidad;
+	protected int cantidad;
 
 	public Tratamiento(String nombre) {
 		this.nombre = nombre;
@@ -20,7 +20,7 @@ public abstract class Tratamiento {
 	}
 
 	public int numTratamientos() {
-		return cantidad++;
+		return ++cantidad;
 	}
 
 	public abstract void administrar(Paciente_Hospitalizado pac);
