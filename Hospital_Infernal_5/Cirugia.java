@@ -1,4 +1,4 @@
-package Hospital_Infernal_4;
+package Hospital_Infernal_5;
 
 import java.util.Random;
 

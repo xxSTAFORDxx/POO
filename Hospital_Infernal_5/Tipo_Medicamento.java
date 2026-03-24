@@ -1,0 +1,5 @@
+package Hospital_Infernal_5;
+
+public enum Tipo_Medicamento {
+	ANTIBIOTICO, ANALGESICO, ANSIOLITICO, ANTITUSIVO, ANTIHISTAMINICO, ANTIDIABETICO
+}
