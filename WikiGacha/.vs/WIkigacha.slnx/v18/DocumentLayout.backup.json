@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\wikigachacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:wikigachacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WikiGachaContext.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGachaContext.cs",
+              "RelativeDocumentMoniker": "WikiGachaContext.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGachaContext.cs",
+              "RelativeToolTip": "WikiGachaContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T17:10:43.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Carta.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Carta.cs",
+              "RelativeDocumentMoniker": "Carta.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Carta.cs",
+              "RelativeToolTip": "Carta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T17:09:02.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T15:47:47.645Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
