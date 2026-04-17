@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Wikigacha")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("WikiGacha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3426817ad4747d25091ac0ca2771e5eab4898de1")]
-[assembly: System.Reflection.AssemblyProductAttribute("Wikigacha")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Wikigacha")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d70368a6926ac4819aa381ae29eb24b09bf7ebb7")]
+[assembly: System.Reflection.AssemblyProductAttribute("WikiGacha")]
+[assembly: System.Reflection.AssemblyTitleAttribute("WikiGacha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.

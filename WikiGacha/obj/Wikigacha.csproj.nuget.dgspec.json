@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Wikigacha.csproj": {}
+    "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGacha.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Wikigacha.csproj": {
+    "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGacha.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Wikigacha.csproj",
-        "projectName": "Wikigacha",
-        "projectPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Wikigacha.csproj",
+        "projectUniqueName": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGacha.csproj",
+        "projectName": "WikiGacha",
+        "projectPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGacha.csproj",
         "packagesPath": "C:\\Users\\ies\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\obj\\",
+        "outputPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
