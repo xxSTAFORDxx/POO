@@ -56,7 +56,7 @@ namespace WikiGacha
             {
                 Nombre = "Tabla Periódica",
                 Rareza = "Rara",
-                Idioma = "CA",
+                Idioma = "SPA",
                 Ataque = 4000,
                 Defensa = 6200,
                 Descripción = "Los elementos químicos ordenados."
@@ -112,7 +112,12 @@ namespace WikiGacha
                 Console.WriteLine("---------------------------------");
                 cartaService.ContarCartas();
                 Console.WriteLine("---------------------------------");
-                cartaService.FiltrarPorIdioma("CA").Foreach (carta => Console.WriteLine ($"ID:" { carta.CartaID} -"" Nombre"" { Carta.Nombre} ));
+                cartaService.FiltrarPorIdioma("CA");
+                Console.WriteLine("---------------------------------");
+                cartaService.CartaMasPoderosa();
+                Console.WriteLine("---------------------------------");
+                bool legen = cartaService.HayLegendaria();
+                Console.WriteLine(legen);
             }
             //AQUI ACABA EL USING, ENS DESCONNECTEM DE LA BD
         }

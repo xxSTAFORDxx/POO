@@ -3740,9 +3740,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\WIkigacha.csproj",
-      "projectName": "WIkigacha",
-      "projectPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\WIkigacha.csproj",
+      "projectUniqueName": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\Wikigacha.csproj",
+      "projectName": "Wikigacha",
+      "projectPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\Wikigacha.csproj",
       "packagesPath": "C:\\Users\\ies\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WIkigacha\\obj\\",
       "projectStyle": "PackageReference",
@@ -3763,6 +3763,7 @@
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -3781,6 +3782,7 @@
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
@@ -3818,7 +3820,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

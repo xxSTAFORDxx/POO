@@ -26,8 +26,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -36,7 +40,7 @@
               "RelativeDocumentMoniker": "Carta.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Carta.cs",
               "RelativeToolTip": "Carta.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBIAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-08T17:09:02.196Z",
               "EditorCaption": ""
@@ -49,7 +53,7 @@
               "RelativeDocumentMoniker": "CartaService.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\CartaService.cs",
               "RelativeToolTip": "CartaService.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAowIAAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAYwIsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-17T17:14:58.151Z",
               "EditorCaption": ""
@@ -62,7 +66,7 @@
               "RelativeDocumentMoniker": "WikiGachaContext.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGachaContext.cs",
               "RelativeToolTip": "WikiGachaContext.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-08T17:10:43.82Z",
               "EditorCaption": ""
@@ -75,7 +79,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAQwHIAAAB8AAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAADgv2kAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-08T15:47:47.645Z",
               "EditorCaption": ""

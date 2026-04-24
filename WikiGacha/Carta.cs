@@ -16,7 +16,7 @@ namespace WikiGacha
         [Required]
         public string Rareza { get; set; }
 
-        [Required, StringLength(2)]
+        [Required, StringLength(3)]
         public string Idioma { get; set; }
 
         [Range(1, 9999)]
