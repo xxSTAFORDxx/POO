@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WikiGacha
 {
@@ -16,7 +17,7 @@ namespace WikiGacha
         private ConsoleColor ObtenerColorRareza(string rareza)
         {
             // Usamos .Trim() por si hay espacios vacíos por error
-            return rareza.ToLower() switch
+            return rareza.Trim().ToLower() switch
             {
                 "común" or "comú" or "common" => ConsoleColor.DarkGray,
                 "poco común" or "poc comú" or "uncommon" => ConsoleColor.Gray,
@@ -60,17 +61,15 @@ namespace WikiGacha
         {
             Carta carta = ctx.Carta.Find(ID);
 
-            if (carta != null)
+            if (carta == null)
             {
-                if (carta.Repetida) Console.ForegroundColor = ConsoleColor.White;
-
-                Console.WriteLine(carta.Nombre);
-            }
-            else
-            {
-                Console.WriteLine("No se ha encontrado ninguna carta con ese ID");
+                Console.WriteLine("No se ha encontrado ninguna carta con ese ID.");
+                return;
             }
 
+            Console.WriteLine("=== CARTA ENCONTRADA ===");
+
+            ImprimirConEstilo(new List<Carta> { carta });
         }
         public void ContarCartas()
         {
@@ -123,46 +122,134 @@ namespace WikiGacha
         }
         public void FiltrarPorIdioma(string idioma)
         {
-            List<Carta> lista = ctx.Carta.Where(c => c.Idioma == idioma).ToList();
-            ImprimirConEstilo(lista);
+            
+                var lista = ctx.Carta.Where(c => c.Idioma.ToLower() == idioma.ToLower()).ToList();
+
+                if (!lista.Any())
+                {
+                    Console.WriteLine("No hay cartas en ese idioma.");
+                    return;
+                }
+
+                Console.WriteLine($"=== CARTAS EN IDIOMA: {idioma} ===");
+
+                ImprimirConEstilo(lista);
+           
         }
         public void CartaMasPoderosa()
         {
-            var cartaMasPoderosa = ctx.Carta.OrderByDescending(c => c.Ataque).First();
-            Console.WriteLine($"De todas tus cartas la carta mas poderosa es '{cartaMasPoderosa.Nombre}' con un ataque de {cartaMasPoderosa.Ataque}.");
+            if (!ctx.Carta.Any())
+            {
+                Console.WriteLine("No hay cartas en la colección.");
+                return;
+            }
+
+            var carta = ctx.Carta.OrderByDescending(c => c.Ataque).First();
+
+            Console.WriteLine("=== CARTA MÁS PODEROSA ===");
+
+            ImprimirConEstilo(new List<Carta> { carta });
         }
+            
         public bool HayLegendaria()
         {
-            return ctx.Carta.Any(c => c.Rareza.ToLower().Contains("legend") || c.Rareza.ToLower().Contains("llegend"));
+            return ctx.Carta.Any(carta => carta.Rareza.ToLower().Contains("legend") || carta.Rareza.ToLower().Contains("llegend"));
         }
         public void MejorarCarta(int ID, int BonusAtaque, int BonusDefensa)
         {
-            Carta c = ctx.Carta.Find(ID);
-            c.Ataque = c.Ataque + BonusAtaque;
-            c.Defensa += BonusDefensa;
-            ctx.SaveChanges();
+            
+                Carta carta = ctx.Carta.Find(ID);
+
+                if (carta == null)
+                {
+                    Console.WriteLine("No existe una carta con ese ID.");
+                    return;
+                }
+
+                carta.Ataque += BonusAtaque;
+                carta.Defensa += BonusDefensa;
+
+                ctx.SaveChanges();
+
+                Console.WriteLine("Carta mejorada correctamente.");
+          
 
         }
         public void MarcarRepetida(int ID)
         {
 
-            Carta c = ctx.Carta.Find(ID);
-            c.Repetida = true;
+            Carta carta = ctx.Carta.Find(ID);
+            carta.Repetida = true;
             ctx.SaveChanges();
 
 
         }
         public void EliminarCarta(int ID)
         {
-            Carta c = ctx.Carta.Find(ID);
-            ctx.Carta.Remove(c);
-            ctx.SaveChanges();
+            
+                Carta carta = ctx.Carta.Find(ID);
+
+                if (carta == null)
+                {
+                    Console.WriteLine("No se ha encontrado la carta.");
+                    return;
+                }
+
+                ctx.Carta.Remove(carta);
+                ctx.SaveChanges();
+
+                Console.WriteLine("Carta eliminada correctamente.");
+           
         }
         public void EliminarCartaRepetida(int v)
         {
-            List<Carta> lista = ctx.Carta.Where(c => c.Repetida == true).ToList();
-            ctx.Carta.RemoveRange(lista);
+            
+                var lista = ctx.Carta
+                               .Where(c => c.Repetida)
+                               .ToList();
+
+                if (!lista.Any())
+                {
+                    Console.WriteLine("No hay cartas repetidas.");
+                    return;
+                }
+
+                ctx.Carta.RemoveRange(lista);
+                ctx.SaveChanges();
+
+                Console.WriteLine($"Se han eliminado {lista.Count} cartas repetidas.");
+           
+        }
+
+        public void AñadirCarta(string NombreCarta, string RarezaCarta, string IdiomaCarta, int AtaqueCarta, int DefensaCarta, string DescripcionCarta)
+
+        {
+            bool RepetidaCarta = ctx.Carta.Any(carta => carta.Nombre.ToLower() == NombreCarta.ToLower());
+
+            if (RepetidaCarta)
+            {
+                Console.WriteLine("Esta carta ya existe. Se marcará como repetida.");
+            }
+
+            Carta carta = new Carta()
+            {
+                Nombre = NombreCarta,
+                Rareza = RarezaCarta,
+                Idioma = IdiomaCarta,
+                Ataque = AtaqueCarta,
+                Defensa = DefensaCarta,
+                Descripción = DescripcionCarta,
+                Repetida = RepetidaCarta
+            };
+
+            ctx.Carta.Add(carta);
             ctx.SaveChanges();
+
+            Console.WriteLine("Carta añadida correctamente.");
+        }
+        public bool CartaConNombreExistente(string nombreCarta)
+        {
+            return ctx.Carta.Any(carta => carta.Nombre == nombreCarta);
         }
     }
 }

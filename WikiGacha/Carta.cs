@@ -13,7 +13,7 @@ namespace WikiGacha
         [Required, StringLength(100)]
         public string Nombre { get; set; }
 
-        [Required]
+        [Required, AllowedValues("Común", "Comú", "Common", "Poco Común", "Poc Comú", "Uncommon", "Rara", "Rare", "Épica", "Èpica", "Epic", "Legendaria", "Llegendària", "Legendary")]
         public string Rareza { get; set; }
 
         [Required, StringLength(3)]

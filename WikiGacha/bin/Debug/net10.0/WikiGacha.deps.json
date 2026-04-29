@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v10.0": {
-      "WikiGacha/1.0.0": {
+      "Wikigacha/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.5",
           "Microsoft.EntityFrameworkCore.Proxies": "10.0.5",
@@ -14,7 +14,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "10.0.5"
         },
         "runtime": {
-          "WikiGacha.dll": {}
+          "Wikigacha.dll": {}
         }
       },
       "Azure.Core/1.47.1": {
@@ -939,7 +939,7 @@
     }
   },
   "libraries": {
-    "WikiGacha/1.0.0": {
+    "Wikigacha/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
