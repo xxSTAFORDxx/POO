@@ -11,7 +11,7 @@ public class Paciente_Hospitalizado extends Paciente {
 	private Intervencion intervencionAsignada;
 
 	public Paciente_Hospitalizado(Paciente pac) {
-		super(pac.getNombre(), pac.getDinero(), pac.getEdad(), pac.getGravedad());
+		super(pac.getNombre(), pac.getDinero(), pac.getEdad(), pac.getSexo(), pac.getGravedad());
 		this.tratamientosActuales.add(new Medicamento("Paracetamol", Tipo_Medicamento.ANALGESICO));
 		this.diasHospitalizado = 0;
 		nombrePacientesHospitalizados++;
@@ -73,6 +73,10 @@ public class Paciente_Hospitalizado extends Paciente {
 		if (tratamientosActuales.contains(tra)) {
 			tra.administrar(this);
 		}
+		
+		public boolean esCompatible(TipusOrgans organ, PacientHospitalitzat receptor, PacientHospitalitzat donant) {
+		}
+		
 	}
 
 	public void setTratamientoActual(Tratamiento nuevoTratamiento) {

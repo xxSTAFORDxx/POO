@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Castle.Components.DictionaryAdapter;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -20,7 +22,7 @@ namespace WikiGacha
             return rareza.Trim().ToLower() switch
             {
                 "común" or "comú" or "common" => ConsoleColor.DarkGray,
-                "poco común" or "poc comú" or "uncommon" => ConsoleColor.Gray,
+                "poco común" or "poc comú" or "uncommon" => ConsoleColor.Blue,
                 "rara" or "rare" => ConsoleColor.DarkYellow,
                 "épica" or "èpica" or "epic" => ConsoleColor.Magenta,
                 "legendaria" or "llegendària" or "legendary" => ConsoleColor.Red,
@@ -122,19 +124,19 @@ namespace WikiGacha
         }
         public void FiltrarPorIdioma(string idioma)
         {
-            
-                var lista = ctx.Carta.Where(c => c.Idioma.ToLower() == idioma.ToLower()).ToList();
 
-                if (!lista.Any())
-                {
-                    Console.WriteLine("No hay cartas en ese idioma.");
-                    return;
-                }
+            var lista = ctx.Carta.Where(c => c.Idioma.ToLower() == idioma.ToLower()).ToList();
 
-                Console.WriteLine($"=== CARTAS EN IDIOMA: {idioma} ===");
+            if (!lista.Any())
+            {
+                Console.WriteLine("No hay cartas en ese idioma.");
+                return;
+            }
 
-                ImprimirConEstilo(lista);
-           
+            Console.WriteLine($"=== CARTAS EN IDIOMA: {idioma} ===");
+
+            ImprimirConEstilo(lista);
+
         }
         public void CartaMasPoderosa()
         {
@@ -150,77 +152,93 @@ namespace WikiGacha
 
             ImprimirConEstilo(new List<Carta> { carta });
         }
-            
+
         public bool HayLegendaria()
         {
             return ctx.Carta.Any(carta => carta.Rareza.ToLower().Contains("legend") || carta.Rareza.ToLower().Contains("llegend"));
         }
         public void MejorarCarta(int ID, int BonusAtaque, int BonusDefensa)
         {
-            
-                Carta carta = ctx.Carta.Find(ID);
 
-                if (carta == null)
-                {
-                    Console.WriteLine("No existe una carta con ese ID.");
-                    return;
-                }
+            Carta carta = ctx.Carta.Find(ID);
 
-                carta.Ataque += BonusAtaque;
-                carta.Defensa += BonusDefensa;
+            if (carta == null)
+            {
+                Console.WriteLine("No existe una carta con ese ID.");
+                return;
+            }
 
-                ctx.SaveChanges();
+            carta.Ataque += BonusAtaque;
+            carta.Defensa += BonusDefensa;
 
-                Console.WriteLine("Carta mejorada correctamente.");
-          
+            ctx.SaveChanges();
+
+            Console.WriteLine("Carta mejorada correctamente.");
+
 
         }
         public void MarcarRepetida(int ID)
         {
 
             Carta carta = ctx.Carta.Find(ID);
-            carta.Repetida = true;
-            ctx.SaveChanges();
+            if (carta != null)
+            {
+                carta.Repetida = true;
+                ctx.SaveChanges();
 
-
+            }
         }
         public void EliminarCarta(int ID)
         {
-            
-                Carta carta = ctx.Carta.Find(ID);
 
-                if (carta == null)
-                {
-                    Console.WriteLine("No se ha encontrado la carta.");
-                    return;
-                }
+            Carta carta = ctx.Carta.Find(ID);
 
-                ctx.Carta.Remove(carta);
-                ctx.SaveChanges();
+            if (carta == null)
+            {
+                Console.WriteLine("No se ha encontrado la carta.");
+                return;
+            }
 
-                Console.WriteLine("Carta eliminada correctamente.");
-           
+            ctx.Carta.Remove(carta);
+            ctx.SaveChanges();
+
+            Console.WriteLine("Carta eliminada correctamente.");
+
         }
-        public void EliminarCartaRepetida(int v)
+
+        public void EliminarCartaSinGuardar(int ID)
         {
-            
-                var lista = ctx.Carta
-                               .Where(c => c.Repetida)
-                               .ToList();
 
-                if (!lista.Any())
-                {
-                    Console.WriteLine("No hay cartas repetidas.");
-                    return;
-                }
+            Carta carta = ctx.Carta.Find(ID);
 
-                ctx.Carta.RemoveRange(lista);
-                ctx.SaveChanges();
+            if (carta == null)
+            {
+                Console.WriteLine("No se ha encontrado la carta.");
+                return;
+            }
 
-                Console.WriteLine($"Se han eliminado {lista.Count} cartas repetidas.");
-           
+            ctx.Carta.Remove(carta);
+
+            Console.WriteLine("Carta eliminada correctamente.");
+
         }
+        public void EliminarCartasRepetidas()
+        {
+            List<Carta> repetidas = ctx.Carta.Where(c => c.Repetida).ToList();
+            int total = repetidas.Count;
+            if (total == 0)
+            {
+                Console.WriteLine("No se han encontrado cartas repetidas para eliminar.");
+                return;
+            }
+            foreach (Carta c in repetidas)
+            {
+                EliminarCartaSinGuardar(c.CartaID);
+            }
+            ctx.SaveChanges();
 
+            Console.WriteLine($"Limpieza completada: Se han eliminado {total} cartas repetidas.");
+        }
         public void AñadirCarta(string NombreCarta, string RarezaCarta, string IdiomaCarta, int AtaqueCarta, int DefensaCarta, string DescripcionCarta)
 
         {
@@ -250,6 +268,35 @@ namespace WikiGacha
         public bool CartaConNombreExistente(string nombreCarta)
         {
             return ctx.Carta.Any(carta => carta.Nombre == nombreCarta);
+        }
+        public void FuncionBatalla(int ID1, int ID2)
+        {
+            Carta carta1 = ctx.Carta.Find(ID1);
+            Carta carta2 = ctx.Carta.Find(ID2);
+
+            if (carta1 == null || carta2 == null)
+            {
+                Console.WriteLine("Error: Una de las cartas (o ambas) no existen en la base de datos.");
+                return;
+            }
+
+            int Total1 = carta1.Ataque + carta1.Defensa;
+            int Total2 = carta2.Ataque + carta2.Defensa;
+
+            Console.WriteLine($"COMBATE: {carta1.Nombre} ({Total1}) vs {carta2.Nombre} ({Total2})");
+
+            if (Total1 > Total2)
+            {
+                Console.WriteLine($"¡Ganador: {carta1.Nombre}!");
+            }
+            else if (Total2 > Total1)
+            {
+                Console.WriteLine($"¡Ganador: {carta2.Nombre}!");
+            }
+            else
+            {
+                Console.WriteLine("¡Empate técnico!");
+            }
         }
     }
 }

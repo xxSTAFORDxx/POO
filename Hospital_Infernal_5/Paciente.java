@@ -9,7 +9,8 @@ public class Paciente extends Persona {
 	private double dinero;
 	private int edad;
 	private ArrayList<Sintoma> sintomas = new ArrayList<>();
-	private HashMap<Organo, Boolean> organos = new HashMap<>();
+	private HashMap<Organo, Boolean> organos = new HashMap<>(); 
+	// private HashMap<TipoOrgano, Boolean> organos = new HashMap<>();
 	private Planta planta;
 	private Gravedad gravedad;
 	private Sexo sexo;
@@ -74,30 +75,35 @@ public class Paciente extends Persona {
 			return (Paciente_Hospitalizado) this;
 		}
 	}
+	
+	private void comprobacionOrganos() {
+	    Random random = new Random();
+	    int limite;
 
-	private void comprobacionOrganos () {
-		Random random = new Random();
-		int limite =0;
-		if (this.getEdad() <= 1 && this.planta == Planta.NEONATAL) {
-			limite =5;
-		} else if (this.getEdad() <= 18 && this.planta ==Planta.PEDIATRIA) {
-			limite = 15;
-		} else if (this.getEdad() <= 74 && this.planta ==Planta.GENERAL) {
-			limite = 35;
-		} else {
-			 limite = 60;
-		}
+	    if (this.getEdad() <= 1 && this.planta == Planta.NEONATAL) limite = 5;
+	    else if (this.getEdad() <= 18 && this.planta == Planta.PEDIATRIA) limite = 15;
+	    else if (this.getEdad() <= 74 && this.planta == Planta.GENERAL) limite = 35;
+	    else limite = 60;
+
+	    this.organos.clear();
+
+	    for (TipoOrgano tipo : TipoOrgano.values()) {
+	        Organo nuevoOrgano = new Organo(tipo); 
+	        boolean falla = random.nextInt(100) < limite;
+	        this.organos.put(nuevoOrgano, falla);
+	        nuevoOrgano.setSano(!falla); 
+	    }
 	}
-
+	
 	public double getDinero() {
 		return dinero;
 	}
-
+	
 	public void setDinero(double nuevoDinero) {
 		System.out.println("El saldo de " + getNombre() + " ha pasado de " + this.dinero + "€ a " + nuevoDinero + "€");
 		this.dinero = nuevoDinero;
 	}
-
+	
 	public int getEdad() {
 		return edad;
 	}
@@ -120,7 +126,7 @@ public class Paciente extends Persona {
 			this.planta = Planta.GERIATRIA;
 		}
 	}
-
+	
 	public Gravedad getGravedad() {
 		return gravedad;
 	}
@@ -136,6 +142,14 @@ public class Paciente extends Persona {
 
 	public Planta getPlanta() {
 		return planta;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+	
+	public HashMap<Organo, Boolean> getOrganos() {
+		return organos;
 	}
 
 	public String toString() {
