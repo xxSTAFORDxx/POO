@@ -28,6 +28,12 @@ public class Medico extends Persona {
 		this.pacientsAssignats = new ArrayList<>();
 	}
 
+	public Medico(String nombre, Categoria categoria, int añosTrabajados) {
+        super(nombre); // Llama al constructor de Persona
+        this.categoria = categoria;
+        this.añosTrabajados = añosTrabajados;
+    }
+	
 	public void augmentarAñosTrabajados() {
 		this.añosTrabajados++;
 		actualizarSueldo();

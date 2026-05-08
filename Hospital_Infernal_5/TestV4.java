@@ -6,7 +6,7 @@ public class TestV4 {
 		// TODO Auto-generated method stub
 
 		// 1. PREPARACIÓN DE DATOS BÁSICOS
-        Paciente p1 = new Paciente("Dani", 500, 30, Gravedad.GRAVE);
+        Paciente p1 = new Paciente("Dani", 500, 30,Sexo.MASCULINO, Gravedad.GRAVE);
         
         // Hospitalizamos a Dani con un tratamiento inicial (Paracetamol que viene por defecto)
         Paciente_Hospitalizado daniHospi = new Paciente_Hospitalizado(p1);

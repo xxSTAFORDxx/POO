@@ -39,7 +39,7 @@ public class Test {
 		System.out.println("Sueldo Faustino (esperado aprox 1181.37): " + faustino2.getSueldo());
 
 		Medico house2 = new Medico("Dr. House", Categoria.ESPECIALISTA);
-		Paciente p = new Paciente("Juan", 100.0, 20, Gravedad.LEVE);
+		Paciente p = new Paciente("Juan", 100.0, 20, Sexo.MASCULINO, Gravedad.LEVE);
 
 		System.out.println("Dinero Juan antes: " + p.getDinero());
 		house2.consulta(p);
@@ -48,7 +48,18 @@ public class Test {
 
 		Paciente p1 = new Paciente("Yago", 29);
 
-		Paciente_Hospitalizado yagoEnPlanta = p1.hospitalizar(new Terapia("Reposo total", Tipo_Terapia.FISIO));
+		Paciente_Hospitalizado yagoEnPlanta = null;
+
+		try {
+			yagoEnPlanta = p1.hospitalizar(new Terapia("Reposo total", Tipo_Terapia.FISIO));
+			System.out.println("Hospitalización confirmada para: " + yagoEnPlanta.getNombre());
+
+		} catch (PacienteYaHospitalizadoException e) {
+			System.err.println("ALERTA: " + e.getMessage());
+			yagoEnPlanta = (Paciente_Hospitalizado) p1;
+		} catch (Exception e) {
+			System.out.println("Error inesperado: " + e.getMessage());
+		}
 
 		Paciente dani = new Paciente();
 		dani.estatic = "hola";

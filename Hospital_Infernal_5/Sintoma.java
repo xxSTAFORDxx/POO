@@ -1,6 +1,7 @@
 package Hospital_Infernal_5;
 
 public class Sintoma {
+
 	String nuevoSintoma;
 	Gravedad gravedad;
 

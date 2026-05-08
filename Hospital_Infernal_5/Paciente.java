@@ -2,6 +2,7 @@ package Hospital_Infernal_5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 
 public class Paciente extends Persona {
@@ -9,8 +10,7 @@ public class Paciente extends Persona {
 	private double dinero;
 	private int edad;
 	private ArrayList<Sintoma> sintomas = new ArrayList<>();
-	private HashMap<Organo, Boolean> organos = new HashMap<>(); 
-	// private HashMap<TipoOrgano, Boolean> organos = new HashMap<>();
+	private HashMap<Tipo_Organo, Boolean> organos = new HashMap<>();
 	private Planta planta;
 	private Gravedad gravedad;
 	private Sexo sexo;
@@ -36,6 +36,7 @@ public class Paciente extends Persona {
 		} else {
 			this.planta = Planta.GERIATRIA;
 		}
+		comprobacionOrganos();
 	}
 
 	public Paciente() {
@@ -64,46 +65,44 @@ public class Paciente extends Persona {
 		}
 	}
 
-	public Paciente_Hospitalizado hospitalizar(Tratamiento tratamiento) {
-
+	public Paciente_Hospitalizado hospitalizar(Tratamiento tratamiento) throws PacienteYaHospitalizadoException {
 		if (!(this instanceof Paciente_Hospitalizado)) {
 			Paciente_Hospitalizado nuevoPaciente = new Paciente_Hospitalizado(this, tratamiento);
-			System.out.println(this.getNombre() + " ha sido hospitalizado.");
+			System.out.println(this.getNombre() + " ha sido hospitalizado con éxito.");
 			return nuevoPaciente;
 		} else {
-			System.out.println("Este paciente ya esta hospitalizado.");
-			return (Paciente_Hospitalizado) this;
+			throw new PacienteYaHospitalizadoException(
+					"¡ERROR! El paciente " + this.getNombre() + " ya se encuentra en una planta del hospital.");
 		}
 	}
-	
+
 	private void comprobacionOrganos() {
-	    Random random = new Random();
-	    int limite;
-
-	    if (this.getEdad() <= 1 && this.planta == Planta.NEONATAL) limite = 5;
-	    else if (this.getEdad() <= 18 && this.planta == Planta.PEDIATRIA) limite = 15;
-	    else if (this.getEdad() <= 74 && this.planta == Planta.GENERAL) limite = 35;
-	    else limite = 60;
-
-	    this.organos.clear();
-
-	    for (TipoOrgano tipo : TipoOrgano.values()) {
-	        Organo nuevoOrgano = new Organo(tipo); 
-	        boolean falla = random.nextInt(100) < limite;
-	        this.organos.put(nuevoOrgano, falla);
-	        nuevoOrgano.setSano(!falla); 
-	    }
+		Random random = new Random();
+		int limite;
+		if (this.getEdad() <= 1 && this.planta == Planta.NEONATAL)
+			limite = 5;
+		else if (this.getEdad() <= 18 && this.planta == Planta.PEDIATRIA)
+			limite = 15;
+		else if (this.getEdad() <= 74 && this.planta == Planta.GENERAL)
+			limite = 35;
+		else
+			limite = 60;
+		this.organos.clear();
+		for (Tipo_Organo tipo : Tipo_Organo.values()) {
+			boolean falla = random.nextInt(100) < limite;
+			this.organos.put(tipo, !falla);
+		}
 	}
-	
+
 	public double getDinero() {
 		return dinero;
 	}
-	
+
 	public void setDinero(double nuevoDinero) {
 		System.out.println("El saldo de " + getNombre() + " ha pasado de " + this.dinero + "€ a " + nuevoDinero + "€");
 		this.dinero = nuevoDinero;
 	}
-	
+
 	public int getEdad() {
 		return edad;
 	}
@@ -126,7 +125,7 @@ public class Paciente extends Persona {
 			this.planta = Planta.GERIATRIA;
 		}
 	}
-	
+
 	public Gravedad getGravedad() {
 		return gravedad;
 	}
@@ -147,11 +146,41 @@ public class Paciente extends Persona {
 	public Sexo getSexo() {
 		return sexo;
 	}
-	
-	public HashMap<Organo, Boolean> getOrganos() {
+
+	public HashMap<Tipo_Organo, Boolean> getOrganos() {
 		return organos;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(edad, gravedad, organos, sexo, sintomas);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		return edad == other.edad && gravedad == other.gravedad && Objects.equals(organos, other.organos)
+				&& sexo == other.sexo && Objects.equals(sintomas, other.sintomas);
+	}
+
+	public int compareTo(Object arg0) {
+		Paciente otro = (Paciente) arg0;
+		if (otro.edad > this.edad) {
+			return -1;
+		} else if (this.edad > otro.edad) {
+			return 1;
+		}
+		else {
+			return this.getNombre().compareTo(otro.getNombre());
+		}
+	}
+	
 	public String toString() {
 		return super.toString() + "Paciente [dinero=" + dinero + ", edad=" + edad + ", sintomas=" + sintomas
 				+ ", planta=" + planta + ", gravedad=" + gravedad + "]";

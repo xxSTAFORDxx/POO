@@ -41,8 +41,25 @@ public class TestV3 {
 	    
 	    // Dani se agrava y lo hospitalizamos. 
 	    // Importante: 'daniIngresado' es un nuevo objeto de tipo Paciente_Hospitalizado
-	    Paciente_Hospitalizado daniIngresado = dani.hospitalizar(new Terapia("Reposo", Tipo_Terapia.FISIO));
+	    Paciente_Hospitalizado daniIngresado = null; // La declaramos fuera para usarla luego
 
+	    try {
+	        // Intentamos la hospitalización
+	        daniIngresado = dani.hospitalizar(new Terapia("Reposo", Tipo_Terapia.FISIO));
+	        System.out.println("Éxito: " + daniIngresado.getNombre() + " ya tiene habitación.");
+
+	    } catch (PacienteYaHospitalizadoException e) {
+	        // Si ya estaba dentro, capturamos el error y lo mostramos en rojo
+	        System.err.println(e.getMessage());
+	        
+	        // Como ha fallado, para no dejar la variable a null, 
+	        // le asignamos el objeto que ya existía (haciendo casting)
+	        daniIngresado = (Paciente_Hospitalizado) dani; 
+
+	    } catch (Exception e) {
+	        // Un "por si acaso" para otros errores
+	        System.out.println("Ha ocurrido un error inesperado.");
+	    }
 	    // Probamos los métodos específicos de la subclase
 	    daniIngresado.setDiasHospitalizado(1);
 	    System.out.println("Paciente: " + daniIngresado.getNombre() + " | Días: " + daniIngresado.getDiasHospitalizado());
