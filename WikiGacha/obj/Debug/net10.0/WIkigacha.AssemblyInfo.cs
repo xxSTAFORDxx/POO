@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wikigacha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e973fad2f5b4c0a4efef92f20bf2b913b74fb08")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5e607b75316526de2bd04b66390befe5dbf9301")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wikigacha")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wikigacha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

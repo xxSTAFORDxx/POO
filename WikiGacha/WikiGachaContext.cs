@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Wikigacha;
 using WikiGacha;
 
 namespace WikiGacha
@@ -14,6 +15,9 @@ namespace WikiGacha
     {
 
         //FAREM UN DBSET PET CADA CLASE QUE VULGUEM PASSAR A TAULA
+
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Sobre> Sobre { get; set; }
         public DbSet<Carta> Carta { get; set; }
 
 

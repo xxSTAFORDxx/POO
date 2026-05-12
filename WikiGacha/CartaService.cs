@@ -16,7 +16,7 @@ namespace WikiGacha
             this.ctx = ctx;
         }
 
-        private ConsoleColor ObtenerColorRareza(string rareza)
+        public ConsoleColor ObtenerColorRareza(string rareza)
         {
             // Usamos .Trim() por si hay espacios vacíos por error
             return rareza.Trim().ToLower() switch
@@ -26,17 +26,17 @@ namespace WikiGacha
                 "rara" or "rare" => ConsoleColor.DarkYellow,
                 "épica" or "èpica" or "epic" => ConsoleColor.Magenta,
                 "legendaria" or "llegendària" or "legendary" => ConsoleColor.Red,
-                _ => ConsoleColor.Green // Color base de tu consola
+                _ => ConsoleColor.Gray // Color base de tu consola
             };
         }
 
-        private void ImprimirConEstilo(List<Carta> lista)
+        public void ImprimirConEstilo(List<Carta> lista)
         {
             foreach (var carta in lista)
             {
                 // Aplicamos tu Guía de Estilo:
                 // Color de línea según si es repetida
-                Console.ForegroundColor = carta.Repetida ? ConsoleColor.White : ConsoleColor.Green;
+                Console.ForegroundColor = carta.Repetida ? ConsoleColor.Red : ConsoleColor.Gray;
 
                 Console.Write($"[{carta.CartaID}] {carta.Nombre} (");
 
@@ -45,7 +45,7 @@ namespace WikiGacha
                 Console.Write(carta.Rareza);
 
                 // Volvemos al color de la línea
-                Console.ForegroundColor = carta.Repetida ? ConsoleColor.White : ConsoleColor.Green;
+                Console.ForegroundColor = carta.Repetida ? ConsoleColor.Gray : ConsoleColor.Gray;
                 Console.WriteLine($") - ATK: {carta.Ataque} / DEF: {carta.Defensa}");
             }
             Console.ResetColor(); // Importante: dejar la consola limpia
@@ -157,7 +157,7 @@ namespace WikiGacha
         {
             return ctx.Carta.Any(carta => carta.Rareza.ToLower().Contains("legend") || carta.Rareza.ToLower().Contains("llegend"));
         }
-        public void MejorarCarta(int ID, int BonusAtaque, int BonusDefensa)
+        public void MejorarCarta(int ID, int bonusAtaque, int bonusDefensa)
         {
 
             Carta carta = ctx.Carta.Find(ID);
@@ -168,8 +168,8 @@ namespace WikiGacha
                 return;
             }
 
-            carta.Ataque += BonusAtaque;
-            carta.Defensa += BonusDefensa;
+            carta.Ataque += bonusAtaque;
+            carta.Defensa += bonusDefensa;
 
             ctx.SaveChanges();
 
@@ -239,25 +239,25 @@ namespace WikiGacha
 
             Console.WriteLine($"Limpieza completada: Se han eliminado {total} cartas repetidas.");
         }
-        public void AñadirCarta(string NombreCarta, string RarezaCarta, string IdiomaCarta, int AtaqueCarta, int DefensaCarta, string DescripcionCarta)
+        public void AñadirCarta(string nombreCarta, string rarezaCarta, string idiomaCarta, int ataqueCarta, int defensaCarta, string descripcionCarta)
 
         {
-            bool RepetidaCarta = ctx.Carta.Any(carta => carta.Nombre.ToLower() == NombreCarta.ToLower());
+            bool repetidaCarta = ctx.Carta.Any(carta => carta.Nombre.ToLower() == nombreCarta.ToLower());
 
-            if (RepetidaCarta)
+            if (repetidaCarta)
             {
                 Console.WriteLine("Esta carta ya existe. Se marcará como repetida.");
             }
 
             Carta carta = new Carta()
             {
-                Nombre = NombreCarta,
-                Rareza = RarezaCarta,
-                Idioma = IdiomaCarta,
-                Ataque = AtaqueCarta,
-                Defensa = DefensaCarta,
-                Descripción = DescripcionCarta,
-                Repetida = RepetidaCarta
+                Nombre = nombreCarta,
+                Rareza = rarezaCarta,
+                Idioma = idiomaCarta,
+                Ataque = ataqueCarta,
+                Defensa = defensaCarta,
+                Descripción = descripcionCarta,
+                Repetida = repetidaCarta
             };
 
             ctx.Carta.Add(carta);
@@ -280,16 +280,16 @@ namespace WikiGacha
                 return;
             }
 
-            int Total1 = carta1.Ataque + carta1.Defensa;
-            int Total2 = carta2.Ataque + carta2.Defensa;
+            int total1 = carta1.Ataque + carta1.Defensa;
+            int total2 = carta2.Ataque + carta2.Defensa;
 
-            Console.WriteLine($"COMBATE: {carta1.Nombre} ({Total1}) vs {carta2.Nombre} ({Total2})");
+            Console.WriteLine($"COMBATE: {carta1.Nombre} ({total1}) vs {carta2.Nombre} ({total2})");
 
-            if (Total1 > Total2)
+            if (total1 > total2)
             {
                 Console.WriteLine($"¡Ganador: {carta1.Nombre}!");
             }
-            else if (Total2 > Total1)
+            else if (total2 > total1)
             {
                 Console.WriteLine($"¡Ganador: {carta2.Nombre}!");
             }

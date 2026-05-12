@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\cartaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:cartaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,8 +19,20 @@
       "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:wikigachacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\rarezasobrecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:rarezasobrecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:carta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|c:\\users\\ies\\desktop\\clase\\poo\\wikigacha\\sobre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C614D63E-C7C0-7464-35E9-5F780505F106}|Wikigacha.csproj|solutionrelative:sobre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,41 +42,95 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "UsuarioService.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\UsuarioService.cs",
+              "RelativeToolTip": "UsuarioService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBIAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T15:38:15.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Sobre.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Sobre.cs",
+              "RelativeDocumentMoniker": "Sobre.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Sobre.cs",
+              "RelativeToolTip": "Sobre.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T13:59:45.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Usuario.cs",
+              "RelativeDocumentMoniker": "Usuario.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Usuario.cs",
+              "RelativeToolTip": "Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T13:51:02.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RarezaSobrecs.cs",
+              "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\RarezaSobrecs.cs",
+              "RelativeDocumentMoniker": "RarezaSobrecs.cs",
+              "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\RarezaSobrecs.cs",
+              "RelativeToolTip": "RarezaSobrecs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T13:49:18.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Carta.cs",
               "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Carta.cs",
               "RelativeDocumentMoniker": "Carta.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Carta.cs",
               "RelativeToolTip": "Carta.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBMAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAiwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:09:02.196Z"
+              "WhenOpened": "2026-04-08T17:09:02.196Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "WikiGachaContext.cs",
               "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGachaContext.cs",
               "RelativeDocumentMoniker": "WikiGachaContext.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\WikiGachaContext.cs",
               "RelativeToolTip": "WikiGachaContext.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBsAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:10:43.82Z"
+              "WhenOpened": "2026-04-08T17:10:43.82Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CartaService.cs",
               "DocumentMoniker": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\CartaService.cs",
               "RelativeDocumentMoniker": "CartaService.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\CartaService.cs",
               "RelativeToolTip": "CartaService.cs",
-              "ViewState": "AgIAABABAAAAAAAAAAAswC0BAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAmwEkAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-17T17:14:58.151Z",
               "EditorCaption": ""
@@ -73,7 +143,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\ies\\Desktop\\Clase\\POO\\WikiGacha\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABABAAAAAAAAAAAswCwBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAFcBAAAAAAAAAAAswOQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-08T15:47:47.645Z",
               "EditorCaption": ""

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using Wikigacha;
 using WikiGacha;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 //namespace es com el package
@@ -27,9 +28,15 @@ namespace WikiGacha
                 //Crea la BD. Aquesta linea hauria d'estar SEMPRE
                 ctx.Database.EnsureCreated();
 
-                //CARTAS
+                // 2. CREACIÓN DE USUARIOS
+                Console.WriteLine("Cargando usuarios iniciales...");
+                Usuario arnau = new Usuario { Nombre = "Arnau", Nivel = 5, Monedas = 1000 };
+                Usuario laia = new Usuario { Nombre = "Laia", Nivel = 12, Monedas = 2500 };
+                Usuario pol = new Usuario { Nombre = "Pol", Nivel = 1, Monedas = 500 };
 
+                ctx.Usuario.AddRange(arnau, laia, pol);
 
+                // 3. CREACIÓN DE CARTAS
                 Carta germanCuisine = new Carta()
                 {
                     Nombre = "German cuisine",
@@ -94,6 +101,38 @@ namespace WikiGacha
                     Descripción = "Raça de gat domèstic de pèl llarg.",
                     Repetida = true
                 };
+                Carta cargolDeMar = new Carta()
+                {
+                    Nombre = "Castellers",
+                    Rareza = "Èpica",
+                    Idioma = "CA",
+                    Ataque = 5800,
+                    Defensa = 7100
+                };
+                Carta mountEverest = new Carta()
+                {
+                    Nombre = "Castellers",
+                    Rareza = "Èpica",
+                    Idioma = "CA",
+                    Ataque = 5800,
+                    Defensa = 7100
+                };
+                Carta revolucionFrancesa = new Carta()
+                {
+                    Nombre = "Revolución Francesa",
+                    Rareza = "Epica",
+                    Idioma = "SPA",
+                    Ataque = 5800,
+                    Defensa = 7100
+                };
+                Carta formiga = new Carta()
+                {
+                    Nombre = "Formiga",
+                    Rareza = "Comú",
+                    Idioma = "CA",
+                    Ataque = 500,
+                    Defensa = 900
+                };
 
                 //Es fa un insert en la DB
                 ctx.Carta.Add(germanCuisine);
@@ -103,17 +142,54 @@ namespace WikiGacha
                 ctx.Carta.Add(programacio);
                 ctx.Carta.Add(castellers);
                 ctx.Carta.Add(gatPersa2);
+                ctx.Carta.Add(cargolDeMar);
+                ctx.Carta.Add(mountEverest);
+                ctx.Carta.Add(revolucionFrancesa);
+                ctx.Carta.Add(formiga);
 
+                // 2.3 — Crear Sobres i assignar-los
+
+                // --- SOBRES DE ARNAU ---
+                Sobre sobreNormalArnau = new Sobre { Nombre = "Sobre Normal", Rareza = RarezaSobre.Normal, NumCartas = 3, Precio = 100, Usuario = arnau };
+                sobreNormalArnau.Cartas.Add(tablaPeriodica);
+                sobreNormalArnau.Cartas.Add(cargolDeMar);
+                sobreNormalArnau.Cartas.Add(formiga);
+
+                Sobre sobreDoradoArnau = new Sobre { Nombre = "Sobre Dorado", Rareza = RarezaSobre.Dorado, NumCartas = 3, Precio = 300, Usuario = arnau };
+                sobreDoradoArnau.Cartas.Add(gatPersa);
+                sobreDoradoArnau.Cartas.Add(programacio);
+                sobreDoradoArnau.Cartas.Add(castellers);
+
+                // --- SOBRES DE LAIA ---
+                Sobre sobreGeografiaLaia = new Sobre { Nombre = "Sobre de Geografia", Rareza = RarezaSobre.Normal, NumCartas = 3, Precio = 100, Usuario = laia };
+                sobreGeografiaLaia.Cartas.Add(mountEverest);
+                sobreGeografiaLaia.Cartas.Add(cargolDeMar);
+                sobreGeografiaLaia.Cartas.Add(formiga);
+
+                Sobre sobreArcoirisLaia = new Sobre { Nombre = "Sobre Arcoiris", Rareza = RarezaSobre.Arcoiris, NumCartas = 2, Precio = 500, Usuario = laia };
+                sobreArcoirisLaia.Cartas.Add(germanCuisine);
+                sobreArcoirisLaia.Cartas.Add(battleOfMidway);
+
+                // --- SOBRES DE POL ---
+                Sobre sobreInicialPol = new Sobre { Nombre = "Sobre Inicial", Rareza = RarezaSobre.Normal, NumCartas = 2, Precio = 0, Usuario = pol };
+                sobreInicialPol.Cartas.Add(formiga);
+                sobreInicialPol.Cartas.Add(programacio);
+
+                // Añadimos los sobres al contexto
+                ctx.Sobre.AddRange(sobreNormalArnau, sobreDoradoArnau, sobreGeografiaLaia, sobreArcoirisLaia, sobreInicialPol);
+
+                // IMPORTANTE: Un solo SaveChanges al final de toda la configuración guardará 
+                // los usuarios, las cartas, los sobres y todas sus relaciones (tablas intermedias).
                 ctx.SaveChanges();
 
-                Console.WriteLine("=== WIKIGACHA - Gestor de Colección ===");
+                Console.WriteLine("Base de datos inicializada con Usuarios, Sobres y Cartas.");
 
                 int opcion;
                 do
                 {
                     // --- PUNTO 2: Limpieza de pantalla al inicio de cada ciclo ---
                     // Esto borra el menú anterior y los resultados de la operación pasada
-                    // Console.Clear(); // Descomenta esta línea si quieres que el menú siempre esté arriba del todo
+                    Console.Clear(); // Descomenta esta línea si quieres que el menú siempre esté arriba del todo
 
                     Console.WriteLine("\n=== WIKIGACHA - Gestor de Colección ===");
                     Console.WriteLine("1. Mostrar totas las cartas.");
@@ -136,7 +212,7 @@ namespace WikiGacha
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Error: ¡Debes introducir un número!");
                         Console.ResetColor();
-                        opcion = 0; 
+                        opcion = 0;
                     }
 
                     Console.WriteLine("                                 ");
