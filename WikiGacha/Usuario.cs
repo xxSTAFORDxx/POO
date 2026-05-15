@@ -9,7 +9,7 @@ namespace Wikigacha
 {
     public class Usuario
     {
-        public int UsuariID { get; set; }
+        public int UsuarioID { get; set; }
 
         [Required, MaxLength(50)]
         public string Nombre { get; set; }

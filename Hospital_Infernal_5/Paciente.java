@@ -131,8 +131,12 @@ public class Paciente extends Persona {
 	}
 
 	public void setGravedad(Gravedad nuevaGravedad) {
-		System.out.println("El estado de " + getNombre() + " ha cambiado a " + nuevaGravedad);
-		this.gravedad = nuevaGravedad;
+		if (nuevaGravedad == null) {
+	        System.out.println(getNombre() + " ha muerto.");
+	    } else {
+	        System.out.println("El estado de " + getNombre() + " ha cambiado a " + nuevaGravedad);
+	    }
+	    this.gravedad = nuevaGravedad;
 	}
 
 	public ArrayList<Sintoma> getSintomas() {

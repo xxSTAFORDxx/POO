@@ -29,7 +29,7 @@ public class Medico extends Persona {
 	}
 
 	public Medico(String nombre, Categoria categoria, int añosTrabajados) {
-        super(nombre); // Llama al constructor de Persona
+        super(nombre);
         this.categoria = categoria;
         this.añosTrabajados = añosTrabajados;
     }

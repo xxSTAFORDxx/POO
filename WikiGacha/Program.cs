@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using Wikigacha;
-using WikiGacha;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 //namespace es com el package
 namespace WikiGacha
@@ -20,6 +20,7 @@ namespace WikiGacha
             using (var ctx = new WikiGachaContext())
             {
                 CartaService cartaService = new CartaService(ctx);
+                UsuarioService usuarioService = new UsuarioService(ctx);
 
 
                 //Borra la BD. Aquesta linea es util quan esteu fent proves
@@ -184,194 +185,223 @@ namespace WikiGacha
 
                 Console.WriteLine("Base de datos inicializada con Usuarios, Sobres y Cartas.");
 
-                int opcion;
-                do
+
+                // --- PUNTO 2: Limpieza de pantalla al inicio de cada ciclo ---
+                // Esto borra el menú anterior y los resultados de la operación pasada
+                Console.Clear(); // Descomenta esta línea si quieres que el menú siempre esté arriba del todo
+
+                string opcionPrincipal = "";
+                while (opcionPrincipal != "0")
                 {
-                    // --- PUNTO 2: Limpieza de pantalla al inicio de cada ciclo ---
-                    // Esto borra el menú anterior y los resultados de la operación pasada
-                    Console.Clear(); // Descomenta esta línea si quieres que el menú siempre esté arriba del todo
+                    Console.Clear();
+                    Console.WriteLine("==========================================");
+                    Console.WriteLine("       WIKIGACHA - SISTEMA CENTRAL        ");
+                    Console.WriteLine("==========================================");
+                    Console.WriteLine("1. Centro de usuario. (Usuarios y Colecciones)");
+                    Console.WriteLine("2. Tienda. (Comprar y Abrir sobres)");
+                    Console.WriteLine("3. Rankings y estadísticas.");
+                    Console.WriteLine("4. Administración. (Gestión CRUD de Cartas)");
+                    Console.WriteLine("0. Salir.");
+                    Console.WriteLine("------------------------------------------");
+                    Console.Write("Selecciona una sección: ");
+                    opcionPrincipal = Console.ReadLine();
 
-                    Console.WriteLine("\n=== WIKIGACHA - Gestor de Colección ===");
-                    Console.WriteLine("1. Mostrar totas las cartas.");
-                    Console.WriteLine("2. Mostrar las cartas por cada rareza.");
-                    Console.WriteLine("3. Buscar carta por ID.");
-                    Console.WriteLine("4. Añadir nueva carta.");
-                    Console.WriteLine("5. Mejorar carta.");
-                    Console.WriteLine("6. Eliminar carta por ID.");
-                    Console.WriteLine("7. Mostrar cartas por idioma.");
-                    Console.WriteLine("8. Mostrar la carta mas poderosa.");
-                    Console.WriteLine("9. Eliminar todas las repetidas.");
-                    Console.WriteLine("10. Simular Batalla entre dos cartas.");
-                    Console.WriteLine("11. Salir del programa.");
-                    Console.WriteLine("-----------");
-                    Console.WriteLine("-----------");
-                    Console.WriteLine("Elige una opcion:");
-
-                    if (!int.TryParse(Console.ReadLine(), out opcion))
+                    switch (opcionPrincipal)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Error: ¡Debes introducir un número!");
-                        Console.ResetColor();
-                        opcion = 0;
-                    }
-
-                    Console.WriteLine("                                 ");
-
-                    switch (opcion)
-                    {
-                        case 1:
-
-                            Console.WriteLine("Mostrando todas las cartas...");
-                            cartaService.MostrarTodas();
-
-                            break;
-                        case 2:
-
-                            cartaService.ContarCartas();
-
-                            break;
-                        case 3:
-
-                            Console.Write("Introduce el ID de la carta: ");
-                            if (int.TryParse(Console.ReadLine(), out int IDCarta))
-                            {
-                                cartaService.BuscarPorID(IDCarta);
-                            }
-                            else Console.WriteLine("ID no válido.");
-
-                            break;
-                        case 4:
-
-                            Console.WriteLine("Añadiendo nueva carta...");
-
-                            Console.Write("Nombre: ");
-                            string NombreCarta = Console.ReadLine();
-
-                            Console.Write("Rareza: ");
-                            string RarezaCarta = Console.ReadLine();
-
-                            Console.Write("Idioma: ");
-                            string IdiomaCarta = Console.ReadLine();
-
-                            Console.Write("Ataque: ");
-                            if (!int.TryParse(Console.ReadLine(), out int AtaqueCarta))
-                            {
-                                Console.WriteLine("Valor no válido."); break;
-                            }
-
-                            Console.Write("Defensa: ");
-                            if (!int.TryParse(Console.ReadLine(), out int DefensaCarta))
-                            {
-                                Console.WriteLine("Valor no válido."); break;
-                            }
-
-                            Console.Write("Descripción: ");
-                            string DescripcionCarta = Console.ReadLine();
-                            cartaService.AñadirCarta(NombreCarta, RarezaCarta, IdiomaCarta, AtaqueCarta, DefensaCarta, DescripcionCarta);
-
-                            break;
-                        case 5:
-
-                            Console.WriteLine("Mejorando carta...");
-
-                            Console.WriteLine("Dime el ID de la carta a mejorar.");
-                            if (!int.TryParse(Console.ReadLine(), out int IDMejorar))
-                            {
-                                Console.WriteLine("Error: El ID debe ser un número entero.");
-                                break;
-                            }
-
-                            Console.Write("Introduce bonus de ataque: ");
-                            if (!int.TryParse(Console.ReadLine(), out int BonusAtaque))
-                            {
-                                Console.WriteLine("Error: El bonus de ataque debe ser un número.");
-                                break;
-                            }
-
-                            Console.Write("Introduce bonus de defensa: ");
-                            if (!int.TryParse(Console.ReadLine(), out int BonusDefensa))
-                            {
-                                Console.WriteLine("Error: El bonus de defensa debe ser un número.");
-                                break;
-                            }
-                            cartaService.MejorarCarta(IDMejorar, BonusAtaque, BonusDefensa);
-
-                            break;
-                        case 6:
-
-                            Console.WriteLine("Eliminando carta...");
-
-                            Console.Write("Introduce el ID de la carta a eliminar: ");
-                            if (!int.TryParse(Console.ReadLine(), out int IDEliminar))
-                            {
-                                Console.WriteLine("ID no válido. Debe ser un número.");
-                                break;
-                            }
-                            cartaService.EliminarCarta(IDEliminar);
-
-                            break;
-                        case 7:
-
-                            Console.Write("Introduce el idioma: ");
-                            string Idioma = Console.ReadLine();
-                            cartaService.FiltrarPorIdioma(Idioma);
-
-                            break;
-                        case 8:
-
-                            Console.WriteLine("Buscando la carta más poderosa...");
-                            cartaService.CartaMasPoderosa();
-
-                            break;
-                        case 9:
-
-                            Console.WriteLine("Eliminando cartas repetidas...");
-                            cartaService.EliminarCartasRepetidas();
-
-                            break;
-                        case 10:
-                            Console.WriteLine("=== ARENA DE COMBATE ===");
-
-                            Console.Write("Introduce el ID de la primera carta: ");
-                            if (!int.TryParse(Console.ReadLine(), out int ID1))
-                            {
-                                Console.WriteLine("ID no válido. Debe ser un número.");
-                                break;
-                            }
-
-                            Console.Write("Introduce el ID de la segunda carta: ");
-                            if (!int.TryParse(Console.ReadLine(), out int ID2))
-                            {
-                                Console.WriteLine("ID no válido. Debe ser un número.");
-                                break;
-                            }
-                            cartaService.FuncionBatalla(ID1, ID2);
-
-                            break;
-                        case 11:
-
-                            Console.WriteLine("Saliendo del programa...");
-
-                            break;
+                        case "1": MenuPerfil(ctx, usuarioService); break;
+                        case "2": MenuTienda(usuarioService); break;
+                        case "3": MenuRankings(usuarioService, cartaService); break;
+                        case "4": MenuGestionCartas(cartaService); break;
+                        case "0": Console.WriteLine("Saliendo del programa..."); break;
                         default:
-
-                            if (opcion != 0) Console.WriteLine("Opción no válida.");
-
+                            Console.WriteLine("Opción no válida. Presiona una tecla...");
+                            Console.ReadKey();
                             break;
-                    }
-                    if (opcion != 11)
-                    {
-                        Console.WriteLine("\nPresiona cualquier tecla para volver al menú...");
-                        Console.ReadKey();
-                        Console.Clear();
                     }
                 }
-                while (opcion != 11);
-                Console.ReadKey();
-
-                //AQUI ACABA EL USING, ENS DESCONNECTEM DE LA BD
             }
+        }
 
+        // ==========================================
+        // SUBMENÚ 1: PERFIL
+        // ==========================================
+        static void MenuPerfil(WikiGachaContext ctx, UsuarioService usuarioService)
+        {
+            string sub = "";
+            while (sub != "0")
+            {
+                Console.Clear();
+                Console.WriteLine("=== CENTRO DE USUARIO ===");
+                Console.WriteLine("1. Mostrar todos los usuarios.");
+                Console.WriteLine("2. Mostrar sobres de un usuario.");
+                Console.WriteLine("3. Mostrar colección de un usuario.");
+                Console.WriteLine("0. Volver al menú principal.");
+                Console.Write("\nSelecciona: ");
+                sub = Console.ReadLine().ToLower();
+
+                switch (sub)
+                {
+                    case "1":
+                        usuarioService.MostrarTodosLosUsuarios();
+                        break;
+                    case "2":
+                        Console.Write("Introduce el nombre del usuario: ");
+                        string nom = Console.ReadLine();
+                        usuarioService.MostrarSobresUsuario(nom);
+                        break;
+                    case "3":
+                        Console.Write("Introduce el nombre del usuario: ");
+                        string nomCol = Console.ReadLine();
+                        usuarioService.MostrarColeccion(nomCol);
+                        break;
+                }
+                if (sub != "0") { Console.WriteLine("\nPresiona una tecla para volver atras"); Console.ReadKey(); }
+            }
+        }
+
+        // ==========================================
+        // SUBMENÚ 2: TIENDA
+        // ==========================================
+        static void MenuTienda(UsuarioService usuarioService)
+        {
+            string sub = "";
+            while (sub != "0")
+            {
+                Console.Clear();
+                Console.WriteLine("=== TIENDA ===");
+                Console.WriteLine("1. Abrir un sobre. (por ID)");
+                Console.WriteLine("2. Comprar un sobre. (por ID y Rareza)");
+                Console.WriteLine("3. Mostrar sobres sin abrir.");
+                Console.WriteLine("0. Volver al menú principal.");
+                Console.Write("\nSelecciona: ");
+                sub = Console.ReadLine().ToLower();
+
+                switch (sub)
+                {
+                    case "1":
+                        Console.Write("Introduce el ID del sobre a abrir: ");
+                        if (int.TryParse(Console.ReadLine(), out int idSobre))
+                            usuarioService.AbrirSobre(idSobre);
+                        else Console.WriteLine("ID no válido.");
+                        break;
+                    case "2":
+                        Console.Write("Introduce el ID del usuario: ");
+                        string usuarioID = Console.ReadLine();
+                        Console.Write("Rareza deseada (Normal, Dorado, Arcoiris): ");
+                        string rareza = Console.ReadLine();
+
+                        bool comprobacionID = int.TryParse(usuarioID, out int usuarioIDFinal);
+                        bool comprobacionRareza = Enum.TryParse(rareza, true, out RarezaSobre rarezafinal);
+
+                        if (comprobacionID && comprobacionRareza)
+                        {
+                            bool exito = usuarioService.ComprarSobre(usuarioIDFinal, rarezafinal);
+                            if (exito) Console.WriteLine("✨ ¡Compra completada con éxito!");
+                            else Console.WriteLine("❌ La compra falló (¿Saldo insuficiente?).");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: ID o Rareza incorrectos.");
+                        }
+                        break;
+                    case "3":
+                        usuarioService.SobresSinAbrir();
+                        break;
+                }
+                if (sub != "0") { Console.WriteLine("\nPresiona una tecla para volver atras"); Console.ReadKey(); }
+            }
+        }
+
+        // ==========================================
+        // SUBMENÚ 3: RANKINGS
+        // ==========================================
+        static void MenuRankings(UsuarioService usuarioService, CartaService cartaService)
+        {
+            string sub = "";
+            while (sub != "0")
+            {
+                Console.Clear();
+                Console.WriteLine("=== RANKINGS Y ESTADÍSTICAS ===");
+                Console.WriteLine("1. Usuario con más cartas.");
+                Console.WriteLine("2. Valor total de una colección.");
+                Console.WriteLine("3. Mostrar la carta más poderosa.");
+                Console.WriteLine("0. Volver al menú principal.");
+                Console.Write("\nSelecciona: ");
+                sub = Console.ReadLine().ToLower();
+
+                switch (sub)
+                {
+                    case "1": usuarioService.UsuarioConMasCartas(); break;
+                    case "2":
+                        Console.Write("Nombre del usuario: ");
+                        string nombreUsuario = Console.ReadLine();
+                        usuarioService.ValorColeccion(nombreUsuario);
+                        break;
+                    case "3": cartaService.CartaMasPoderosa(); break;
+                }
+                if (sub != "0") { Console.WriteLine("\nPresiona una tecla para volver atras"); Console.ReadKey(); }
+            }
+        }
+
+        // ==========================================
+        // SUBMENÚ 4: ADMINISTRACIÓN (CRUD CARTAS)
+        // ==========================================
+        static void MenuGestionCartas(CartaService cartaService)
+        {
+            int op = -1;
+            while (op != 0)
+            {
+                Console.Clear();
+                Console.WriteLine("=== ADMINISTRACIÓN DE CARTAS (CRUD) ===");
+                Console.WriteLine("1. Mostrar todas.");
+                Console.WriteLine("2. Por Rareza.");
+                Console.WriteLine("3. Buscar por ID.");
+                Console.WriteLine("4. Añadir carta.");
+                Console.WriteLine("5. Mejorar.");
+                Console.WriteLine("6. Eliminar.");
+                Console.WriteLine("7. Idioma.");
+                Console.WriteLine("8. Batalla.");
+                Console.WriteLine("9. Repetidas.");
+                Console.WriteLine("0. Volver al menú principal");
+                Console.Write("\nOpción: ");
+
+                if (!int.TryParse(Console.ReadLine(), out op)) op = 0;
+
+                switch (op)
+                {
+                    case 1: cartaService.MostrarTodas(); break;
+                    case 2: cartaService.ContarCartas(); break;
+                    case 3:
+                        Console.Write("ID de la carta: ");
+                        if (int.TryParse(Console.ReadLine(), out int id)) cartaService.BuscarPorID(id);
+                        break;
+                    case 4:
+                        // Lógica simplificada de añadir
+                        Console.Write("Nombre: "); string n = Console.ReadLine();
+                        Console.Write("Rareza: "); string r = Console.ReadLine();
+                        Console.Write("Ataque: "); int atk = int.Parse(Console.ReadLine());
+                        Console.Write("Defensa: "); int def = int.Parse(Console.ReadLine());
+                        cartaService.AñadirCarta(n, r, "ES", atk, def, "");
+                        break;
+                    case 5:
+                        Console.Write("ID a mejorar: "); int idM = int.Parse(Console.ReadLine());
+                        cartaService.MejorarCarta(idM, 10, 10);
+                        break;
+                    case 6:
+                        Console.Write("ID a eliminar: "); int idE = int.Parse(Console.ReadLine());
+                        cartaService.EliminarCarta(idE);
+                        break;
+                    case 8:
+                        Console.Write("ID Carta 1: "); int c1 = int.Parse(Console.ReadLine());
+                        Console.Write("ID Carta 2: "); int c2 = int.Parse(Console.ReadLine());
+                        cartaService.FuncionBatalla(c1, c2);
+                        break;
+                    case 9:
+                        cartaService.EliminarCartasRepetidas();
+                        break;
+                }
+                if (op != 0) { Console.WriteLine("\nPresiona una tecla para volver atras"); Console.ReadKey(); }
+            }
         }
     }
 }
